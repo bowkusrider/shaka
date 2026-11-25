@@ -1,0 +1,2078 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Petualangan Kawruh Basa Jawa - SD Alif Smart</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --batik-gold: #f59e0b;
+      --batik-brown: #78350f;
+      --jawa-cream: #fef3c7;
+      --jawa-green: #15803d;
+    }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: linear-gradient(180deg, #38bdf8 0%, #bae6fd 45%, #fde68a 75%, #86efac 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+      user-select: none;
+    }
+
+    h1, h2, h3, .font-title {
+      font-family: 'Fredoka', sans-serif;
+    }
+
+    /* Motif Batik Kawung & Parang Halus di Latar */
+    .batik-pattern {
+      background-color: #fffbeb;
+      background-image: 
+        radial-gradient(#f59e0b22 2px, transparent 2px),
+        radial-gradient(#b4530918 2px, #fffbeb 2px);
+      background-size: 28px 28px;
+      background-position: 0 0, 14px 14px;
+    }
+
+    .wood-board {
+      background: linear-gradient(180deg, #b45309 0%, #92400e 50%, #78350f 100%);
+      border: 4px solid #fcd34d;
+      box-shadow: 0 8px 0 #451a03, 0 12px 20px rgba(0,0,0,0.25);
+    }
+
+    .btn-jawa {
+      transition: all 0.15s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: 0 5px 0 rgba(0, 0, 0, 0.25);
+    }
+    .btn-jawa:hover:not(:disabled) {
+      transform: translateY(-2px);
+      filter: brightness(1.05);
+    }
+    .btn-jawa:active:not(:disabled) {
+      transform: translateY(3px);
+      box-shadow: 0 2px 0 rgba(0, 0, 0, 0.25);
+    }
+
+    /* Animasi Karakter */
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+    }
+    @keyframes bounceHappy {
+      0%, 100% { transform: translateY(0) scale(1); }
+      30% { transform: translateY(-16px) scale(1.06); }
+      60% { transform: translateY(-4px) scale(0.98); }
+    }
+    @keyframes shakeSad {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-8px) rotate(-3deg); }
+      40%, 80% { transform: translateX(8px) rotate(3deg); }
+    }
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(251, 191, 36, 0.7); }
+      50% { box-shadow: 0 0 0 12px rgba(251, 191, 36, 0); }
+    }
+
+    .animate-float { animation: floatSlow 3.2s ease-in-out infinite; }
+    .animate-happy { animation: bounceHappy 0.65s ease-in-out; }
+    .animate-shake { animation: shakeSad 0.5s ease-in-out; }
+    .animate-glow { animation: pulseGlow 2s infinite; }
+
+    /* Kartu Flip Sinau */
+    .card-item {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .card-item:hover {
+      transform: translateY(-3px);
+    }
+
+    /* Scrollbar ramah anak */
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: #fef3c7; border-radius: 10px; }
+    ::-webkit-scrollbar-thumb { background: #d97706; border-radius: 10px; }
+  </style>
+</head>
+<body class="text-amber-950 flex flex-col justify-between">
+
+  <!-- Latar Dekoratif Awan & Siluet Candi / Gunung -->
+  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+    <!-- Matahari -->
+    <div class="absolute top-6 right-10 w-20 h-20 rounded-full bg-yellow-300 opacity-80 blur-sm"></div>
+    <!-- Awan -->
+    <svg class="absolute top-8 left-6 w-36 text-white/80 animate-float" viewBox="0 0 200 80" fill="currentColor">
+      <path d="M45 65h110a25 25 0 0 0 5-49.5A35 35 0 0 0 92 12a28 28 0 0 0-47 22A20 20 0 0 0 45 65z"/>
+    </svg>
+    <svg class="absolute top-16 right-1/4 w-28 text-white/70 animate-float" style="animation-delay: 1.2s;" viewBox="0 0 200 80" fill="currentColor">
+      <path d="M45 65h110a25 25 0 0 0 5-49.5A35 35 0 0 0 92 12a28 28 0 0 0-47 22A20 20 0 0 0 45 65z"/>
+    </svg>
+    <!-- Siluet Gunung & Candi di Bawah -->
+    <svg class="absolute bottom-0 left-0 w-full h-44 md:h-56 text-emerald-700/20" preserveAspectRatio="none" viewBox="0 0 1200 220" fill="currentColor">
+      <path d="M0 220 L0 140 Q250 40 500 150 T1000 120 L1200 160 L1200 220 Z"/>
+      <!-- Siluet Candi Tengah -->
+      <path d="M540 160 L540 135 L555 135 L555 115 L570 115 L570 95 L585 95 L585 75 L600 55 L615 75 L615 95 L630 95 L630 115 L645 115 L645 135 L660 135 L660 160 Z"/>
+    </svg>
+  </div>
+
+  <!-- HEADER / TOP BAR -->
+  <header class="relative z-20 px-3 pt-3 md:px-6">
+    <div class="max-w-5xl mx-auto flex flex-wrap items-center justify-between gap-2 bg-amber-900/90 backdrop-blur-md text-amber-50 px-4 py-2.5 rounded-2xl border-2 border-amber-400 shadow-lg">
+      <div class="flex items-center gap-2.5 cursor-pointer" onclick="goHome()">
+        <!-- Ikon Gunungan Mini -->
+        <div class="w-10 h-10 rounded-xl bg-amber-400 flex items-center justify-center shadow-inner shrink-0">
+          <svg class="w-7 h-7 text-amber-950" viewBox="0 0 64 64" fill="currentColor">
+            <path d="M32 4 C24 18, 12 30, 10 52 L28 52 L28 60 L36 60 L36 52 L54 52 C52 30, 40 18, 32 4 Z M32 16 C36 24, 42 32, 44 44 L20 44 C22 32, 28 24, 32 16 Z"/>
+          </svg>
+        </div>
+        <div>
+          <div class="font-title text-base md:text-lg leading-tight text-amber-300 tracking-wide">Kawruh Mini Basa Jawa</div>
+          <div class="text-[11px] md:text-xs text-amber-100/90 font-semibold">SD Alif Smart • Nguri-Uri Kabudayan</div>
+        </div>
+      </div>
+
+      <!-- Status Pemain (Muncul saat bermain) -->
+      <div id="hudStats" class="hidden flex items-center gap-2 md:gap-4 text-sm font-bold">
+        <div class="flex items-center gap-1.5 bg-amber-950/80 px-3 py-1.5 rounded-xl border border-amber-500/40">
+          <span id="hudAvatarMini" class="w-6 h-6 inline-block"></span>
+          <span id="hudPlayerName" class="text-amber-200 max-w-[90px] truncate">Siswa</span>
+        </div>
+        <div class="flex items-center gap-1 bg-rose-950/80 px-3 py-1.5 rounded-xl border border-rose-400/40" title="Nyawa">
+          <span id="hudHearts" class="tracking-widest text-base">❤️❤️❤️</span>
+        </div>
+        <div class="flex items-center gap-1 bg-emerald-950/80 px-3 py-1.5 rounded-xl border border-emerald-400/40" title="Skor Kawruh">
+          <span>⭐</span>
+          <span id="hudScore" class="text-amber-300">0</span>
+        </div>
+        <button onclick="toggleMusicPlayer()" id="btnMusicHud" class="p-2 rounded-xl bg-amber-800 hover:bg-amber-700 border border-amber-400/50 text-amber-100" title="Musik Tembang Dolanan">
+          🎵
+        </button>
+        <button onclick="toggleSound()" id="btnSound" class="p-2 rounded-xl bg-amber-800 hover:bg-amber-700 border border-amber-400/50 text-amber-100" title="Efek Suara">
+          🔊
+        </button>
+      </div>
+
+      <!-- Tombol Suara di Layar Awal -->
+      <div id="hudStartControls" class="flex items-center gap-2">
+        <button onclick="openSinauModal()" class="btn-jawa px-3 py-1.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-white font-bold text-xs md:text-sm flex items-center gap-1.5 border-2 border-emerald-200">
+          📖 Sinau Sik!
+        </button>
+        <button onclick="toggleMusicPlayer()" id="btnMusicStart" class="p-2 rounded-xl bg-amber-800 hover:bg-amber-700 border border-amber-400/50 text-amber-100 text-sm" title="Musik Tembang Dolanan">
+          🎵
+        </button>
+        <button onclick="toggleSound()" id="btnSoundStart" class="p-2 rounded-xl bg-amber-800 hover:bg-amber-700 border border-amber-400/50 text-amber-100 text-sm" title="Efek Suara">
+          🔊
+        </button>
+      </div>
+    </div>
+
+    <!-- Pemutar Musik Tembang Dolanan Mini (Melayang) -->
+    <div id="musicBar" class="hidden max-w-5xl mx-auto mt-2 bg-amber-950/90 backdrop-blur-md text-amber-100 px-4 py-2 rounded-2xl border-2 border-amber-400/80 shadow-lg flex flex-wrap items-center justify-between gap-2 text-xs md:text-sm">
+      <div class="flex items-center gap-2">
+        <span class="text-lg animate-bounce">🎶</span>
+        <span class="font-bold text-amber-300">Gamelan Tembang Dolanan:</span>
+        <select id="selectTembang" onchange="changeTembangTrack()" class="bg-amber-900 border border-amber-500 text-amber-50 rounded-lg px-2 py-1 font-bold focus:outline-none">
+          <option value="cublak">1. Cublak-Cublak Suweng</option>
+          <option value="lirilr">2. Lir-Ilir</option>
+          <option value="suwe">3. Suwe Ora Jamu</option>
+          <option value="menthog">4. Menthog-Menthog</option>
+        </select>
+      </div>
+      <div class="flex items-center gap-2">
+        <button onclick="startTembangMusic()" id="btnPlayTembang" class="px-3 py-1 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold">
+          ▶️ Puter
+        </button>
+        <button onclick="stopTembangMusic()" id="btnStopTembang" class="px-3 py-1 rounded-lg bg-rose-600 hover:bg-rose-500 text-white font-bold">
+          ⏹️ Mandheg
+        </button>
+        <a id="btnYoutubeTembang" href="https://www.youtube.com/watch?v=Qmu4ygwS2SI" target="_blank" rel="noopener noreferrer"
+          class="px-3 py-1 rounded-lg bg-red-600 hover:bg-red-500 text-white font-bold flex items-center gap-1 shadow">
+          📺 Video YouTube
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <main class="relative z-10 flex-1 flex items-center justify-center px-3 py-4 md:px-6">
+    <div class="w-full max-w-5xl">
+
+      <!-- ================= 1. LAYAR MULAI & PILIH JAGOAN ================= -->
+      <section id="screenStart" class="batik-pattern rounded-3xl border-4 border-amber-600 shadow-2xl p-5 md:p-8">
+        <div class="text-center mb-6">
+          <span class="inline-block px-4 py-1 rounded-full bg-red-600 text-white font-bold text-xs md:text-sm tracking-wider uppercase shadow mb-2">
+            Petualangan Budaya Jawa • SD Alif Smart
+          </span>
+          <h1 class="font-title text-3xl md:text-5xl text-amber-900 drop-shadow-sm">
+            Pilih Jagoan Basa Jawamu!
+          </h1>
+          <p class="text-amber-800 font-semibold text-sm md:text-base mt-1 max-w-2xl mx-auto">
+            "Sinau Basa, Lestari Budaya, Nguri-Uri Kabudayan" — Ayo bantu warga desa menggunakan Basa Krama yang sopan dan taklukkan 5 Pos Kawruh Jawa!
+          </p>
+        </div>
+
+        <!-- Input Nama Pemain -->
+        <div class="max-w-md mx-auto mb-6">
+          <label for="inputPlayerName" class="block text-center font-bold text-amber-900 text-sm mb-1.5">
+            Jenengmu Sapa? (Tulis Namamu):
+          </label>
+          <input type="text" id="inputPlayerName" maxlength="18" placeholder="Contoh: Bima / Sari..."
+            class="w-full text-center font-bold text-lg px-4 py-2.5 rounded-2xl border-3 border-amber-500 bg-white focus:outline-none focus:ring-4 focus:ring-amber-300 text-amber-950 shadow-inner" />
+        </div>
+
+        <!-- Pilihan Karakter Jagoan -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 max-w-3xl mx-auto mb-6">
+          <!-- Jagoan 1: Mas Bagas -->
+          <div id="cardHeroBagas" onclick="selectHero('bagas')"
+            class="cursor-pointer rounded-3xl p-4 md:p-5 border-4 border-amber-500 bg-gradient-to-b from-amber-100 to-orange-100 hover:from-amber-200 hover:to-orange-200 transition-all relative flex flex-col items-center text-center shadow-md ring-4 ring-amber-400">
+            <span class="absolute top-3 right-3 px-2.5 py-0.5 rounded-full bg-amber-600 text-white text-xs font-extrabold" id="badgeBagas">
+              ✓ Dipilih
+            </span>
+            <div class="w-32 h-32 md:w-36 md:h-36 animate-float" id="previewBagas"></div>
+            <h3 class="font-title text-2xl text-amber-900 mt-2">Mas Bagas</h3>
+            <p class="text-xs md:text-sm font-bold text-orange-800 bg-white/70 px-3 py-1 rounded-full mt-1">
+              Jagoan Blangkon & Beskap
+            </p>
+            <p class="text-xs text-amber-900 mt-2">
+              Ceria, pemberani, dan jago dolanan tradisional serta tembang dolanan!
+            </p>
+          </div>
+
+          <!-- Jagoan 2: Mbak Sekar -->
+          <div id="cardHeroSekar" onclick="selectHero('sekar')"
+            class="cursor-pointer rounded-3xl p-4 md:p-5 border-4 border-pink-300 bg-gradient-to-b from-pink-50 to-rose-100 hover:from-pink-100 hover:to-rose-200 transition-all relative flex flex-col items-center text-center shadow-md opacity-90">
+            <span class="hidden absolute top-3 right-3 px-2.5 py-0.5 rounded-full bg-pink-600 text-white text-xs font-extrabold" id="badgeSekar">
+              ✓ Dipilih
+            </span>
+            <div class="w-32 h-32 md:w-36 md:h-36 animate-float" style="animation-delay: 0.6s;" id="previewSekar"></div>
+            <h3 class="font-title text-2xl text-pink-900 mt-2">Mbak Sekar</h3>
+            <p class="text-xs md:text-sm font-bold text-pink-800 bg-white/70 px-3 py-1 rounded-full mt-1">
+              Putri Kebaya & Hijab Anggun
+            </p>
+            <p class="text-xs text-pink-950 mt-2">
+              Ramah, santun, dan ahli unggah-ungguh Basa Krama serta Tembang Macapat!
+            </p>
+          </div>
+        </div>
+
+        <!-- Maskot Pemandu Si Kutut -->
+        <div class="max-w-2xl mx-auto bg-amber-200/80 border-2 border-amber-500 rounded-2xl p-3 mb-6 flex items-center gap-3">
+          <div class="w-14 h-14 shrink-0" id="mascotKututStart"></div>
+          <div class="text-xs md:text-sm text-amber-950">
+            <span class="font-extrabold text-amber-900">🐦 Si Kutut (Pemandu Pintar):</span>
+            "Sugeng rawuh! Aku bakal ngancani petualanganmu. Yen durung apal materine, klik tombol <b class="text-emerald-800">Sinau Sik!</b> dhisik ya!"
+          </div>
+        </div>
+
+        <!-- Tombol Aksi Mulai -->
+        <div class="flex flex-wrap items-center justify-center gap-4">
+          <button onclick="openSinauModal()"
+            class="btn-jawa px-6 py-3.5 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white font-title text-lg md:text-xl border-2 border-emerald-200 flex items-center gap-2">
+            📚 Sinau Sik (Materi)
+          </button>
+          <button onclick="startAdventure()"
+            class="btn-jawa animate-glow px-8 py-3.5 rounded-2xl bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-400 hover:to-orange-500 text-white font-title text-xl md:text-2xl border-2 border-yellow-200 flex items-center gap-2">
+            🚀 Budhal Petualangan!
+          </button>
+        </div>
+      </section>
+
+      <!-- ================= 2. PETA PETUALANGAN (5 POS MATERI) ================= -->
+      <section id="screenMap" class="hidden batik-pattern rounded-3xl border-4 border-amber-600 shadow-2xl p-5 md:p-7">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-4 mb-6 pb-4 border-b-2 border-amber-300">
+          <div class="flex items-center gap-3">
+            <div id="mapHeroAvatar" class="w-16 h-16 shrink-0"></div>
+            <div>
+              <span class="text-xs font-extrabold uppercase tracking-wider text-amber-700">Peta Kampung Budaya Jawa</span>
+              <h2 class="font-title text-2xl md:text-3xl text-amber-950" id="mapGreeting">Sugeng Rawuh, Mas Bagas!</h2>
+              <p class="text-xs md:text-sm text-amber-800 font-semibold">Pilih Pos Petualangan kanggo ngumpulake bintang kawruh!</p>
+            </div>
+          </div>
+          <div class="flex gap-2">
+            <button onclick="openSinauModal()" class="btn-jawa px-4 py-2 rounded-xl bg-emerald-600 text-white font-bold text-sm border-2 border-emerald-200">
+              📖 Buka Cathetan
+            </button>
+            <button id="btnShowCert" onclick="showCertificate()" class="hidden btn-jawa px-4 py-2 rounded-xl bg-amber-500 text-amber-950 font-extrabold text-sm border-2 border-yellow-200">
+              🏆 Piagam Pendekar
+            </button>
+          </div>
+        </div>
+
+        <!-- Grid 5 Pos -->
+        <div id="posGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <!-- Diisi via JS -->
+        </div>
+
+        <!-- Kotak Pesan Moral: Ayo Elinga! -->
+        <div class="mt-6 wood-board rounded-2xl p-4 text-amber-50 flex flex-col md:flex-row items-center justify-between gap-3">
+          <div class="flex items-center gap-3">
+            <span class="text-3xl">📜</span>
+            <div>
+              <h4 class="font-title text-lg text-amber-300">Ayo Elinga! (Pesan Luhur)</h4>
+              <ul class="text-xs md:text-sm text-amber-100 list-disc list-inside space-y-0.5">
+                <li>Gunakake <b>basa krama</b> nalika guneman karo wong sing luwih tuwa.</li>
+                <li>Lestarekake <b>budaya Jawa</b> kanggo masa depan kita! (<i>Basa Jawa Jati Diri Kita</i>)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= 3. ARENA BERMAIN / TANTANGAN POS ================= -->
+      <section id="screenPlay" class="hidden batik-pattern rounded-3xl border-4 border-amber-600 shadow-2xl p-4 md:p-7">
+        <!-- Header Pos Aktif -->
+        <div class="flex flex-wrap items-center justify-between gap-2 pb-3 mb-4 border-b-2 border-amber-300">
+          <button onclick="backToMap()" class="btn-jawa px-3.5 py-1.5 rounded-xl bg-amber-200 hover:bg-amber-300 text-amber-950 font-bold text-xs md:text-sm border border-amber-500">
+            ⬅️ Bali menyang Peta
+          </button>
+          <div class="text-center">
+            <span id="playPosTag" class="px-3 py-0.5 rounded-full bg-amber-600 text-white text-xs font-extrabold">POS 1</span>
+            <h2 id="playPosTitle" class="font-title text-xl md:text-2xl text-amber-950">Tembang Dolanan</h2>
+          </div>
+          <div class="text-right">
+            <span class="text-xs font-extrabold text-amber-800 block">Soal</span>
+            <span id="playProgressText" class="font-title text-lg text-amber-950">1 / 5</span>
+          </div>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="w-full h-3 bg-amber-200 rounded-full overflow-hidden mb-5 border border-amber-400">
+          <div id="playProgressBar" class="h-full bg-gradient-to-r from-emerald-500 to-green-400 transition-all duration-300" style="width: 20%;"></div>
+        </div>
+
+        <!-- Panggung Karakter & Dialog Soal -->
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center mb-5">
+          <!-- Karakter Jagoan di Kiri -->
+          <div class="md:col-span-3 flex flex-row md:flex-col items-center justify-center gap-3 bg-amber-100/80 rounded-2xl p-3 border-2 border-amber-300">
+            <div id="playHeroStage" class="w-24 h-24 md:w-32 md:h-32 transition-transform"></div>
+            <div class="text-center">
+              <div id="playHeroLabel" class="font-title text-base text-amber-950">Mas Bagas</div>
+              <div id="playHeroMood" class="text-xs font-bold text-emerald-700 bg-white px-2.5 py-0.5 rounded-full border border-emerald-300 mt-1">
+                Siap Tantangan!
+              </div>
+            </div>
+          </div>
+
+          <!-- Kotak Cerita / Pertanyaan -->
+          <div class="md:col-span-9 bg-white rounded-2xl p-4 md:p-6 border-3 border-amber-400 shadow-md relative">
+            <div class="flex items-start gap-3">
+              <div id="npcIcon" class="w-12 h-12 rounded-2xl bg-amber-200 flex items-center justify-center text-2xl shrink-0 border-2 border-amber-400">
+                👴
+              </div>
+              <div class="flex-1">
+                <div id="npcName" class="text-xs font-extrabold uppercase tracking-wider text-amber-700 mb-1">
+                  Simbah Kakung • Pendopo Desa
+                </div>
+                <p id="questionText" class="text-base md:text-xl font-bold text-amber-950 leading-relaxed">
+                  Pertanyaan muncul di sini...
+                </p>
+                <p id="questionSub" class="text-xs md:text-sm text-amber-700 italic mt-1"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Area Jawaban (Dinamis: Pilihan Ganda atau Cocokkan Pasangan) -->
+        <div id="answerArea" class="min-h-[180px]">
+          <!-- Tombol Pilihan / Kartu Cocokkan dirender JS -->
+        </div>
+
+        <!-- Feedback Banner Setelah Menjawab -->
+        <div id="feedbackBox" class="hidden mt-5 rounded-2xl p-4 border-3 flex flex-col sm:flex-row items-center justify-between gap-3">
+          <div class="flex items-center gap-3">
+            <span id="feedbackEmoji" class="text-3xl">🎉</span>
+            <div>
+              <h4 id="feedbackTitle" class="font-title text-lg">Bener Banget!</h4>
+              <p id="feedbackExplain" class="text-xs md:text-sm font-semibold"></p>
+            </div>
+          </div>
+          <button id="btnNextQuestion" onclick="nextStep()" class="btn-jawa px-6 py-2.5 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-title text-base border-2 border-amber-200 shrink-0">
+            Lanjut ➡️
+          </button>
+        </div>
+      </section>
+
+      <!-- ================= 4. SERTIFIKAT / PIAGAM KELULUSAN ================= -->
+      <section id="screenCert" class="hidden batik-pattern rounded-3xl border-4 border-amber-600 shadow-2xl p-5 md:p-8 text-center">
+        <div class="max-w-2xl mx-auto bg-gradient-to-b from-amber-50 via-yellow-50 to-amber-100 border-8 border-double border-amber-700 rounded-3xl p-6 md:p-8 shadow-xl relative">
+          <div class="text-4xl mb-2">🏆✨🎖️</div>
+          <span class="px-4 py-1 rounded-full bg-amber-800 text-amber-200 text-xs font-extrabold tracking-widest uppercase">
+            Piagam Pangaji-Aji • SD Alif Smart
+          </span>
+          <h2 class="font-title text-3xl md:text-4xl text-amber-950 mt-3">
+            PENDEKAR BASA JAWA
+          </h2>
+          <p class="text-sm text-amber-800 font-semibold mt-1">Paringaken dhumateng:</p>
+
+          <div class="my-4 py-2 px-6 bg-white/90 rounded-2xl border-2 border-amber-400 inline-block shadow-sm">
+            <span id="certPlayerName" class="font-title text-2xl md:text-3xl text-red-700">Mas Bagas</span>
+          </div>
+
+          <div class="w-28 h-28 mx-auto my-2" id="certHeroAvatar"></div>
+
+          <p class="text-xs md:text-sm text-amber-900 max-w-lg mx-auto leading-relaxed font-semibold">
+            Sampun kasil ngrampungake <b>5 Pos Kawruh Mini Basa Jawa</b> (Tembang Dolanan, Dolanan Tradisional, Basa Krama Perangan Awak, Basa Krama Kegiatan Saben Dina, lan Tembang Macapat) kanthi biji:
+          </p>
+
+          <div class="mt-4 flex justify-center gap-4">
+            <div class="bg-amber-200/80 px-5 py-2 rounded-2xl border-2 border-amber-500">
+              <div class="text-xs font-bold text-amber-800">Total Skor</div>
+              <div id="certScore" class="font-title text-2xl text-amber-950">0</div>
+            </div>
+            <div class="bg-emerald-200/80 px-5 py-2 rounded-2xl border-2 border-emerald-500">
+              <div class="text-xs font-bold text-emerald-800">Bintang Kawruh</div>
+              <div id="certStars" class="font-title text-2xl text-emerald-950">15 / 15 ⭐</div>
+            </div>
+          </div>
+
+          <p class="mt-4 text-xs italic text-amber-800 font-bold">
+            "Basa Jawa Jati Diri Kita — Nguri-Uri Kabudayan Jawi"
+          </p>
+        </div>
+
+        <div class="mt-6 flex flex-wrap justify-center gap-3">
+          <button onclick="backToMap()" class="btn-jawa px-6 py-3 rounded-2xl bg-emerald-600 text-white font-title text-lg border-2 border-emerald-200">
+            🗺️ Bali menyang Peta
+          </button>
+          <button onclick="resetAllGame()" class="btn-jawa px-6 py-3 rounded-2xl bg-amber-600 text-white font-title text-lg border-2 border-amber-200">
+            🔄 Main Maneh Saka Awal
+          </button>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ================= MODAL SINAU SIK (KARTU BELAJAR MATERI POSTER) ================= -->
+  <div id="modalSinau" class="hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-3 md:p-6">
+    <div class="batik-pattern w-full max-w-4xl max-h-[90vh] rounded-3xl border-4 border-amber-600 shadow-2xl flex flex-col overflow-hidden">
+      <!-- Header Modal -->
+      <div class="bg-amber-900 text-amber-50 px-5 py-3.5 flex items-center justify-between border-b-4 border-amber-400">
+        <div class="flex items-center gap-2">
+          <span class="text-2xl">📖</span>
+          <div>
+            <h3 class="font-title text-xl text-amber-300">Cathetan Kawruh Mini Basa Jawa</h3>
+            <p class="text-xs text-amber-100">Wacanen materi iki sadurunge tandhing ing Peta Petualangan!</p>
+          </div>
+        </div>
+        <button onclick="closeSinauModal()" class="w-9 h-9 rounded-xl bg-red-600 hover:bg-red-500 text-white font-extrabold text-lg">
+          ✕
+        </button>
+      </div>
+
+      <!-- Tab Kategori Materi -->
+      <div class="flex flex-wrap gap-1.5 p-3 bg-amber-200/80 border-b-2 border-amber-400 justify-center">
+        <button onclick="renderSinauTab(0)" id="sinauTab0" class="sinau-tab px-3 py-1.5 rounded-xl font-bold text-xs md:text-sm bg-amber-800 text-white">1. Tembang Dolanan</button>
+        <button onclick="renderSinauTab(1)" id="sinauTab1" class="sinau-tab px-3 py-1.5 rounded-xl font-bold text-xs md:text-sm bg-white text-amber-900">2. Dolanan Tradisional</button>
+        <button onclick="renderSinauTab(2)" id="sinauTab2" class="sinau-tab px-3 py-1.5 rounded-xl font-bold text-xs md:text-sm bg-white text-amber-900">3. Perangan Awak</button>
+        <button onclick="renderSinauTab(3)" id="sinauTab3" class="sinau-tab px-3 py-1.5 rounded-xl font-bold text-xs md:text-sm bg-white text-amber-900">4. Kegiatan Saben Dina</button>
+        <button onclick="renderSinauTab(4)" id="sinauTab4" class="sinau-tab px-3 py-1.5 rounded-xl font-bold text-xs md:text-sm bg-white text-amber-900">5. Tembang Macapat</button>
+      </div>
+
+      <!-- Konten Materi -->
+      <div id="sinauContent" class="p-4 md:p-6 overflow-y-auto flex-1 space-y-4">
+        <!-- Diisi via JS -->
+      </div>
+
+      <!-- Footer Modal -->
+      <div class="p-3 bg-amber-100 border-t-2 border-amber-300 text-center">
+        <button onclick="closeSinauModal()" class="btn-jawa px-6 py-2 rounded-xl bg-emerald-600 text-white font-title text-base border-2 border-emerald-200">
+          👍 Wis Paham, Ayo Main!
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL GAME OVER / NYAWA HABIS -->
+  <div id="modalGameOver" class="hidden fixed inset-0 z-50 bg-black/65 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="batik-pattern max-w-md w-full rounded-3xl border-4 border-rose-600 p-6 text-center shadow-2xl">
+      <div class="text-5xl mb-2">💔</div>
+      <h3 class="font-title text-2xl md:text-3xl text-rose-900">Aja Nyerah, Cah Bagus/Ayu!</h3>
+      <p class="text-sm text-amber-900 font-semibold mt-2">
+        Nyawamu entek ing pos iki. Ayo waca maneh cathetan kawruh utawa baleni pos iki kanthi semangat!
+      </p>
+      <div class="mt-5 flex flex-col sm:flex-row gap-3 justify-center">
+        <button onclick="closeGameOverAndStudy()" class="btn-jawa px-4 py-2.5 rounded-xl bg-emerald-600 text-white font-bold text-sm">
+          📖 Sinau Materi Sik
+        </button>
+        <button onclick="retryCurrentPos()" class="btn-jawa px-5 py-2.5 rounded-xl bg-amber-600 text-white font-bold text-sm">
+          🔄 Baleni Pos Iki
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="relative z-10 text-center py-2 text-xs font-bold text-amber-950/80">
+    Kawruh Mini Basa Jawa • SD Alif Smart • Sinau Basa, Lestari Budaya
+  </footer>
+
+  <script>
+    /* =========================================================================
+       1. ILUSTRASI KARAKTER SVG (MAS BAGAS, MBAK SEKAR, DAN SI KUTUT)
+       ========================================================================= */
+    function getHeroSVG(hero = 'bagas', mood = 'normal') {
+      // Menentukan ekspresi mata & mulut berdasarkan mood ('normal' | 'happy' | 'sad')
+      const eyesSVG = mood === 'happy'
+        ? `
+          <path d="M40 53 Q45 48 50 53" stroke="#3b1e08" stroke-width="3.2" stroke-linecap="round" fill="none"/>
+          <path d="M62 53 Q67 48 72 53" stroke="#3b1e08" stroke-width="3.2" stroke-linecap="round" fill="none"/>
+        `
+        : mood === 'sad'
+        ? `
+          <circle cx="45" cy="54" r="4.2" fill="#3b1e08"/>
+          <circle cx="67" cy="54" r="4.2" fill="#3b1e08"/>
+          <circle cx="43.8" cy="52.6" r="1.4" fill="#ffffff"/>
+          <circle cx="65.8" cy="52.6" r="1.4" fill="#ffffff"/>
+          <path d="M40 48 L49 50" stroke="#7f1d1d" stroke-width="2.4" stroke-linecap="round"/>
+          <path d="M72 48 L63 50" stroke="#7f1d1d" stroke-width="2.4" stroke-linecap="round"/>
+        `
+        : `
+          <circle cx="45" cy="53" r="4.4" fill="#3b1e08"/>
+          <circle cx="67" cy="53" r="4.4" fill="#3b1e08"/>
+          <circle cx="43.6" cy="51.5" r="1.5" fill="#ffffff"/>
+          <circle cx="65.6" cy="51.5" r="1.5" fill="#ffffff"/>
+        `;
+
+      const mouthSVG = mood === 'happy'
+        ? `<path d="M48 64 Q56 74 64 64 Z" fill="#e11d48" stroke="#881337" stroke-width="2"/>`
+        : mood === 'sad'
+        ? `<path d="M49 69 Q56 62 63 69" stroke="#7f1d1d" stroke-width="2.8" stroke-linecap="round" fill="none"/>`
+        : `<path d="M49 64 Q56 70 63 64" stroke="#7c2d12" stroke-width="2.8" stroke-linecap="round" fill="none"/>`;
+
+      const blushColor = mood === 'sad' ? '#fca5a5' : '#fb7185';
+
+      if (hero === 'sekar') {
+        return `
+          <svg viewBox="0 0 112 112" class="w-full h-full drop-shadow-md" xmlns="http://www.w3.org/2000/svg">
+            <!-- Hijab Pink Anggun -->
+            <path d="M24 54 C24 24, 88 24, 88 54 C94 74, 88 90, 78 94 L34 94 C24 90, 18 74, 24 54 Z" fill="#ec4899" stroke="#9d174d" stroke-width="3"/>
+            <!-- Lipatan Hijab -->
+            <path d="M32 38 C45 28, 67 28, 80 38" stroke="#f9a8d4" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+            <!-- Wajah -->
+            <ellipse cx="56" cy="56" rx="22" ry="20" fill="#fde68a" stroke="#b45309" stroke-width="2.2"/>
+            <!-- Pipi Merona -->
+            <ellipse cx="40" cy="60" rx="4.5" ry="2.6" fill="${blushColor}" opacity="0.65"/>
+            <ellipse cx="72" cy="60" rx="4.5" ry="2.6" fill="${blushColor}" opacity="0.65"/>
+            ${eyesSVG}
+            ${mouthSVG}
+            <!-- Kebaya & Jarik Batik -->
+            <path d="M34 82 Q56 76 78 82 L84 104 L28 104 Z" fill="#f472b6" stroke="#831843" stroke-width="2.5"/>
+            <path d="M47 80 L56 93 L65 80" stroke="#fdf2f8" stroke-width="2.5" fill="none"/>
+            <rect x="30" y="96" width="52" height="10" rx="3" fill="#78350f"/>
+            <circle cx="42" cy="101" r="2" fill="#fbbf24"/>
+            <circle cx="56" cy="101" r="2" fill="#fbbf24"/>
+            <circle cx="70" cy="101" r="2" fill="#fbbf24"/>
+          </svg>
+        `;
+      }
+
+      // Default: Mas Bagas (Blangkon & Beskap Oranye)
+      return `
+        <svg viewBox="0 0 112 112" class="w-full h-full drop-shadow-md" xmlns="http://www.w3.org/2000/svg">
+          <!-- Mondolan Blangkon di Belakang -->
+          <ellipse cx="56" cy="30" rx="13" ry="8" fill="#78350f" stroke="#451a03" stroke-width="2.5"/>
+          <!-- Topi Blangkon Batik -->
+          <path d="M27 45 C29 27, 83 27, 85 45 Z" fill="#92400e" stroke="#451a03" stroke-width="2.5"/>
+          <path d="M34 38 Q56 32 78 38" stroke="#fbbf24" stroke-width="2.2" stroke-dasharray="4 3" fill="none"/>
+          <!-- Wajah -->
+          <ellipse cx="56" cy="57" rx="22" ry="19" fill="#fde68a" stroke="#b45309" stroke-width="2.2"/>
+          <!-- Pipi Merona -->
+          <ellipse cx="40" cy="61" rx="4.5" ry="2.6" fill="${blushColor}" opacity="0.65"/>
+          <ellipse cx="72" cy="61" rx="4.5" ry="2.6" fill="${blushColor}" opacity="0.65"/>
+          ${eyesSVG}
+          ${mouthSVG}
+          <!-- Beskap Oranye -->
+          <path d="M33 82 Q56 76 79 82 L85 104 L27 104 Z" fill="#f97316" stroke="#7c2d12" stroke-width="2.5"/>
+          <path d="M56 79 L56 104" stroke="#fef3c7" stroke-width="2.4"/>
+          <circle cx="56" cy="88" r="2.2" fill="#fbbf24"/>
+          <circle cx="56" cy="96" r="2.2" fill="#fbbf24"/>
+        </svg>
+      `;
+    }
+
+    function getKututSVG() {
+      return `
+        <svg viewBox="0 0 80 80" class="w-full h-full drop-shadow" xmlns="http://www.w3.org/2000/svg">
+          <!-- Ekor Burung Kutut -->
+          <path d="M14 48 L4 40 L8 52 Z" fill="#92400e" stroke="#451a03" stroke-width="2"/>
+          <!-- Badan -->
+          <ellipse cx="38" cy="46" rx="20" ry="15" fill="#d97706" stroke="#451a03" stroke-width="2.2"/>
+          <!-- Motif Lurik Dada -->
+          <path d="M44 37 Q52 46 44 55" stroke="#fef3c7" stroke-width="2" stroke-dasharray="3 2.5" fill="none"/>
+          <path d="M49 39 Q56 46 49 53" stroke="#fef3c7" stroke-width="2" stroke-dasharray="3 2.5" fill="none"/>
+          <!-- Kepala -->
+          <circle cx="54" cy="32" r="11" fill="#f59e0b" stroke="#451a03" stroke-width="2.2"/>
+          <!-- Paruh -->
+          <polygon points="64,30 74,33 64,36" fill="#fbbf24" stroke="#78350f" stroke-width="1.8"/>
+          <!-- Mata -->
+          <circle cx="56" cy="30" r="2.6" fill="#1e1b4b"/>
+          <circle cx="55.2" cy="29.2" r="0.9" fill="#ffffff"/>
+          <!-- Kaki -->
+          <path d="M34 60 L34 69 M30 69 L38 69 M44 60 L44 69 M40 69 L48 69" stroke="#78350f" stroke-width="2.4" stroke-linecap="round"/>
+        </svg>
+      `;
+    }
+
+    /* =========================================================================
+       2. EFEK SUARA GAMELAN & MUSIK TEMBANG DOLANAN (WEB AUDIO API - MOBILE READY)
+       ========================================================================= */
+    window.gameAudioState = window.gameAudioState || {
+      soundEnabled: true,
+      audioCtx: null,
+      musicTimer: null,
+      isMusicPlaying: false,
+      noteIndex: 0
+    };
+
+    function initAudio() {
+      try {
+        if (!window.gameAudioState.audioCtx) {
+          const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+          window.gameAudioState.audioCtx = new AudioContextClass();
+        }
+        if (window.gameAudioState.audioCtx.state === 'suspended') {
+          window.gameAudioState.audioCtx.resume();
+        }
+        // Pancing buffer sunyi singkat agar iOS Safari / Android Chrome langsung membuka kunci audio
+        const ctx = window.gameAudioState.audioCtx;
+        const buffer = ctx.createBuffer(1, 1, 22050);
+        const source = ctx.createBufferSource();
+        source.buffer = buffer;
+        source.connect(ctx.destination);
+        source.start(0);
+      } catch (e) {}
+    }
+
+    // Buka kunci audio otomatis pada sentuhan pertama di HP/Tablet/Laptop
+    ['touchstart', 'pointerdown', 'click'].forEach(evtName => {
+      document.addEventListener(evtName, function unlockOnce() {
+        initAudio();
+      }, { once: true, passive: true });
+    });
+
+    function playTone(freq, duration = 0.25, type = 'triangle', delay = 0, volume = 0.35) {
+      if (!window.gameAudioState.soundEnabled || !freq) return;
+      try {
+        initAudio();
+        const ctx = window.gameAudioState.audioCtx;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, ctx.currentTime + delay);
+
+        gain.gain.setValueAtTime(0.001, ctx.currentTime + delay);
+        gain.gain.exponentialRampToValueAtTime(volume, ctx.currentTime + delay + 0.02);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + delay + duration);
+
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(ctx.currentTime + delay);
+        osc.stop(ctx.currentTime + delay + duration);
+      } catch (e) {}
+    }
+
+    // Nada Pentatonis Gamelan (Hz)
+    const NADA = {
+      C4: 261.63, D4: 293.66, E4: 329.63, G4: 392.00, A4: 440.00,
+      C5: 523.25, D5: 587.33, E5: 659.25, G5: 783.99, A5: 880.00, REST: 0
+    };
+
+    // Melodi Tembang Dolanan sesuai materi poster
+    const TEMBANG_TRACKS = {
+      cublak: {
+        tempo: 340,
+        youtubeUrl: "https://www.youtube.com/watch?v=Qmu4ygwS2SI",
+        notes: [
+          NADA.E4, NADA.G4, NADA.E4, NADA.G4, NADA.A4, NADA.G4, NADA.E4, NADA.D4,
+          NADA.E4, NADA.G4, NADA.A4, NADA.C5, NADA.A4, NADA.G4, NADA.E4, NADA.REST,
+          NADA.G4, NADA.A4, NADA.C5, NADA.D5, NADA.C5, NADA.A4, NADA.G4, NADA.E4,
+          NADA.D4, NADA.E4, NADA.G4, NADA.E4, NADA.D4, NADA.C4, NADA.REST, NADA.REST
+        ]
+      },
+      lirilr: {
+        tempo: 420,
+        youtubeUrl: "https://www.youtube.com/watch?v=ZDGhJ4ToP2k",
+        notes: [
+          NADA.C4, NADA.D4, NADA.E4, NADA.G4, NADA.E4, NADA.D4, NADA.C4, NADA.REST,
+          NADA.E4, NADA.G4, NADA.A4, NADA.C5, NADA.A4, NADA.G4, NADA.E4, NADA.REST,
+          NADA.G4, NADA.A4, NADA.G4, NADA.E4, NADA.D4, NADA.E4, NADA.G4, NADA.REST,
+          NADA.E4, NADA.D4, NADA.C4, NADA.D4, NADA.E4, NADA.C4, NADA.REST, NADA.REST
+        ]
+      },
+      suwe: {
+        tempo: 380,
+        youtubeUrl: "https://www.youtube.com/watch?v=NLiGaO3o-to",
+        notes: [
+          NADA.C5, NADA.A4, NADA.G4, NADA.E4, NADA.G4, NADA.A4, NADA.G4, NADA.REST,
+          NADA.A4, NADA.C5, NADA.D5, NADA.C5, NADA.A4, NADA.G4, NADA.E4, NADA.REST,
+          NADA.E4, NADA.G4, NADA.A4, NADA.G4, NADA.E4, NADA.D4, NADA.C4, NADA.REST
+        ]
+      },
+      menthog: {
+        tempo: 330,
+        youtubeUrl: "https://www.youtube.com/watch?v=SzijaoHo3yI",
+        notes: [
+          NADA.G4, NADA.E4, NADA.G4, NADA.A4, NADA.G4, NADA.E4, NADA.D4, NADA.C4,
+          NADA.D4, NADA.E4, NADA.G4, NADA.E4, NADA.D4, NADA.C4, NADA.REST, NADA.REST,
+          NADA.C5, NADA.A4, NADA.G4, NADA.A4, NADA.C5, NADA.A4, NADA.G4, NADA.E4,
+          NADA.G4, NADA.E4, NADA.D4, NADA.E4, NADA.C4, NADA.REST, NADA.REST, NADA.REST
+        ]
+      }
+    };
+
+    function toggleMusicPlayer() {
+      initAudio();
+      const bar = document.getElementById('musicBar');
+      bar.classList.toggle('hidden');
+      if (!bar.classList.contains('hidden') && !window.gameAudioState.isMusicPlaying) {
+        startTembangMusic();
+      }
+    }
+
+    function startTembangMusic() {
+      stopTembangMusic();
+      if (!window.gameAudioState.soundEnabled) {
+        toggleSound();
+      }
+      initAudio();
+      const trackKey = document.getElementById('selectTembang').value;
+      const track = TEMBANG_TRACKS[trackKey] || TEMBANG_TRACKS.cublak;
+
+      window.gameAudioState.isMusicPlaying = true;
+      window.gameAudioState.noteIndex = 0;
+
+      const stepNote = () => {
+        if (!window.gameAudioState.isMusicPlaying || !window.gameAudioState.soundEnabled) return;
+        const freq = track.notes[window.gameAudioState.noteIndex % track.notes.length];
+        if (freq > 0) {
+          // Volume diperjelas agar terdengar nyaring di speaker HP
+          playTone(freq, (track.tempo / 1000) * 0.9, 'triangle', 0, 0.28);
+          playTone(freq * 2, (track.tempo / 1000) * 0.4, 'sine', 0, 0.10);
+        }
+        window.gameAudioState.noteIndex++;
+      };
+
+      stepNote();
+      window.gameAudioState.musicTimer = setInterval(stepNote, track.tempo);
+    }
+
+    function stopTembangMusic() {
+      window.gameAudioState.isMusicPlaying = false;
+      if (window.gameAudioState.musicTimer) {
+        clearInterval(window.gameAudioState.musicTimer);
+        window.gameAudioState.musicTimer = null;
+      }
+    }
+
+    function changeTembangTrack() {
+      const trackKey = document.getElementById('selectTembang').value;
+      const track = TEMBANG_TRACKS[trackKey] || TEMBANG_TRACKS.cublak;
+      const ytBtn = document.getElementById('btnYoutubeTembang');
+      if (ytBtn && track.youtubeUrl) {
+        ytBtn.href = track.youtubeUrl;
+      }
+      if (window.gameAudioState.isMusicPlaying) {
+        startTembangMusic();
+      }
+    }
+
+    function playSoundClick() {
+      playTone(523.25, 0.12, 'triangle', 0, 0.35);
+    }
+
+    function playSoundCorrect() {
+      // Nada Slendro/Pelog Gamelan Ceria: Ji - Ro - Lu - Ma - Nem
+      const notes = [392.0, 440.0, 523.25, 587.33, 783.99];
+      notes.forEach((n, idx) => playTone(n, 0.28, 'triangle', idx * 0.08, 0.38));
+    }
+
+    function playSoundWrong() {
+      playTone(246.94, 0.22, 'sawtooth', 0, 0.28);
+      playTone(196.00, 0.35, 'sawtooth', 0.16, 0.28);
+    }
+
+    function playSoundWinLevel() {
+      const melody = [523.25, 587.33, 659.25, 783.99, 659.25, 1046.5];
+      melody.forEach((n, idx) => playTone(n, 0.32, 'triangle', idx * 0.11, 0.38));
+    }
+
+    function toggleSound() {
+      window.gameAudioState.soundEnabled = !window.gameAudioState.soundEnabled;
+      const icon = window.gameAudioState.soundEnabled ? '🔊' : '🔇';
+      document.getElementById('btnSound').textContent = icon;
+      document.getElementById('btnSoundStart').textContent = icon;
+      if (!window.gameAudioState.soundEnabled) {
+        stopTembangMusic();
+      } else {
+        initAudio();
+        playSoundClick();
+      }
+    }
+
+    /* =========================================================================
+       3. DATA MATERI POSTER KAWRUH MINI BASA JAWA (UNTUK FITUR SINAU SIK)
+       ========================================================================= */
+    const MATERI_POSTER = {
+      tembangDolanan: {
+        title: "1. Tembang Dolanan",
+        desc: "Tembang dolanan yaiku tembang sing biasa ditembangake nalika bocah-bocah dolanan.",
+        items: [
+          { name: "Cublak-Cublak Suweng", yt: "https://www.youtube.com/watch?v=Qmu4ygwS2SI", channel: "Dongeng Kita" },
+          { name: "Jamuran", yt: "https://www.youtube.com/watch?v=0BujKWYv73s", channel: "Kumpulan Tembang Dolanan" },
+          { name: "Yen Esuk", yt: "https://www.youtube.com/watch?v=u_iC0gZlizQ", channel: "Sugeng Enjing / Yen Esuk" },
+          { name: "Menthog", yt: "https://www.youtube.com/watch?v=SzijaoHo3yI", channel: "Shanshan Twins TV" },
+          { name: "Lir-Ilir", yt: "https://www.youtube.com/watch?v=ZDGhJ4ToP2k", channel: "Dongeng Kita" },
+          { name: "Suwe Ora Jamu", yt: "https://www.youtube.com/watch?v=NLiGaO3o-to", channel: "Solite Kids" }
+        ]
+      },
+      dolananTradisional: {
+        title: "2. Dolanan Tradisional",
+        desc: "Dolanan tradisional yaiku dolanan warisan budaya Jawa sing wis ana wiwit jaman biyen.",
+        items: [
+          "Gobag Sodor",
+          "Egrang",
+          "Congklak",
+          "Engklek",
+          "Bekelan",
+          "Jamuran",
+          "Cublak-Cublak Suweng"
+        ]
+      },
+      peranganAwak: [
+        { ngoko: "Tangan", krama: "Asta" },
+        { ngoko: "Irung", krama: "Grana" },
+        { ngoko: "Sikil", krama: "Suku, Samparan" },
+        { ngoko: "Untu", krama: "Waja" },
+        { ngoko: "Kuping", krama: "Talingan" },
+        { ngoko: "Lambe", krama: "Lathi" },
+        { ngoko: "Sirah", krama: "Mustaka" },
+        { ngoko: "Mripat", krama: "Soca, Paningal" },
+        { ngoko: "Driji", krama: "Racikan" },
+        { ngoko: "Epek-epek", krama: "Tapak Asta" },
+        { ngoko: "Rai", krama: "Pasuryan" },
+        { ngoko: "Weteng", krama: "Padharan" },
+        { ngoko: "Rambut", krama: "Rikma" },
+        { ngoko: "Bathuk", krama: "Palarapan" }
+      ],
+      kegiatanSabenDina: [
+        { ngoko: "Turu", krama: "Sare" },
+        { ngoko: "Tangi", krama: "Wungu" },
+        { ngoko: "Ngombe", krama: "Ngunjuk" },
+        { ngoko: "Lungguh", krama: "Lenggah" },
+        { ngoko: "Ngadeg", krama: "Jumeneng" },
+        { ngoko: "Mlaku", krama: "Mlampah" },
+        { ngoko: "Lunga", krama: "Tindak" },
+        { ngoko: "Mulih", krama: "Kondur" },
+        { ngoko: "Mangan", krama: "Dhahar" },
+        { ngoko: "Adus", krama: "Siram" },
+        { ngoko: "Omong", krama: "Ngendikan" },
+        { ngoko: "Gawe", krama: "Damel" },
+        { ngoko: "Mangkat", krama: "Budhal" },
+        { ngoko: "Teka", krama: "Rawuh" }
+      ],
+      tembangMacapat: [
+        "1. Maskumambang",
+        "2. Mijil",
+        "3. Sinom",
+        "4. Kinanti",
+        "5. Asmarandana",
+        "6. Gambuh",
+        "7. Dhandhanggula",
+        "8. Durma",
+        "9. Pangkur",
+        "10. Megatruh",
+        "11. Pocung"
+      ]
+    };
+
+    /* =========================================================================
+       4. BANK SOAL & TANTANGAN 5 POS (DIPERBANYAK & LENGKAP SESUAI POSTER)
+       ========================================================================= */
+    const POS_DATA = [
+      {
+        id: 0,
+        tag: "POS 1",
+        title: "Tembang Dolanan",
+        subtitle: "Nembang & Dolanan Ceria",
+        icon: "🎵",
+        color: "from-pink-500 to-rose-600",
+        steps: [
+          {
+            type: "mcq",
+            npcIcon: "👵",
+            npcName: "Simbah Putri • Plataran Desa",
+            question: "Apa tegese 'Tembang Dolanan' miturut Kawruh Mini Basa Jawa?",
+            sub: "Pilih jawaban sing paling bener!",
+            options: [
+              "Tembang sing biasa ditembangake nalika bocah-bocah dolanan",
+              "Tembang sing dinyanyekake nalika turu bengi",
+              "Lagu wajib upacara bendera ing sekolah",
+              "Tembang sing mung ditembangake dening dalang wayang"
+            ],
+            answer: 0,
+            explain: "Tembang dolanan yaiku tembang sing biasa ditembangake nalika bocah-bocah dolanan bebarengan."
+          },
+          {
+            type: "mcq",
+            npcIcon: "👧",
+            npcName: "Kanca Dolanan • Lapangan",
+            question: "Ing ngisor iki sing kalebu tuladha (contoh) Tembang Dolanan yaiku...",
+            sub: "Elinga 6 tuladha tembang dolanan ing poster!",
+            options: [
+              "Dhandhanggula lan Pangkur",
+              "Cublak-Cublak Suweng lan Menthog",
+              "Maskumambang lan Pocung",
+              "Gobag Sodor lan Egrang"
+            ],
+            answer: 1,
+            explain: "Tuladha tembang dolanan: Cublak-Cublak Suweng, Jamuran, Yen Esuk, Menthog, Lir-Ilir, lan Suwe Ora Jamu."
+          },
+          {
+            type: "mcq",
+            npcIcon: "🐦",
+            npcName: "Si Kutut • Pemandu Pintar",
+            question: "Tembang 'Lir-Ilir', 'Suwe Ora Jamu', lan 'Yen Esuk' kalebu jinis tembang apa?",
+            sub: "Gampang banget iki!",
+            options: [
+              "Tembang Macapat",
+              "Tembang Dolanan",
+              "Geguritan Modern",
+              "Parikan Jawa"
+            ],
+            answer: 1,
+            explain: "Bener! Lir-Ilir, Suwe Ora Jamu, lan Yen Esuk kalebu Tembang Dolanan."
+          },
+          {
+            type: "mcq",
+            npcIcon: "👦",
+            npcName: "Adhi Kelas • SD Alif Smart",
+            question: "Endi sing BUKAN kalebu daftar Tembang Dolanan ing poster Kawruh Mini?",
+            sub: "Waca kanthi tliti!",
+            options: [
+              "Jamuran",
+              "Suwe Ora Jamu",
+              "Sinom",
+              "Menthog"
+            ],
+            answer: 2,
+            explain: "Sinom kalebu Tembang Macapat, dudu Tembang Dolanan."
+          },
+          {
+            type: "mcq",
+            npcIcon: "📜",
+            npcName: "Bu Guru • Gladhen Kawruh No. 1",
+            question: "Miturut Gladhen Kawruh Mini No. 1, sebutna kelompok 3 tembang dolanan sing kabeh bener!",
+            sub: "Priksa saben judul tembang ing pilihan!",
+            options: [
+              "Yen Esuk, Menthog, Lir-Ilir",
+              "Mijil, Kinanti, Gambuh",
+              "Egrang, Congklak, Bekelan",
+              "Durma, Pangkur, Megatruh"
+            ],
+            answer: 0,
+            explain: "Tepat! Yen Esuk, Menthog, lan Lir-Ilir kabeh kalebu Tembang Dolanan."
+          },
+          {
+            type: "mcq",
+            npcIcon: "🎶",
+            npcName: "Mas Bagas • Nembang Bareng",
+            question: "Ing daftar 1. Tembang Dolanan ing poster, tembang sing nomer 1 yaiku...",
+            sub: "Delengen urutan nomer 1 nganti 6!",
+            options: [
+              "Suwe Ora Jamu",
+              "Cublak-Cublak Suweng",
+              "Lir-Ilir",
+              "Yen Esuk"
+            ],
+            answer: 1,
+            explain: "Urutan nomer 1 ing daftar Tembang Dolanan yaiku Cublak-Cublak Suweng."
+          },
+          {
+            type: "mcq",
+            npcIcon: "🌸",
+            npcName: "Mbak Sekar • Nembang Bareng",
+            question: "Kapan biasane tembang dolanan ditembangake dening bocah-bocah?",
+            sub: "Elinga pangertene tembang dolanan!",
+            options: [
+              "Nalika bocah-bocah dolanan",
+              "Nalika ulangan sekolah",
+              "Nalika lagi lara panas",
+              "Nalika rapat RT"
+            ],
+            answer: 0,
+            explain: "Tembang dolanan ditembangake nalika bocah-bocah lagi dolanan supaya swasana dadi gayeng lan rukun."
+          }
+        ]
+      },
+      {
+        id: 1,
+        tag: "POS 2",
+        title: "Dolanan Tradisional",
+        subtitle: "Warisan Budaya Jaman Biyen",
+        icon: "🪁",
+        color: "from-emerald-500 to-green-700",
+        steps: [
+          {
+            type: "mcq",
+            npcIcon: "🧓",
+            npcName: "Paklik Joko • Pelataran Kampung",
+            question: "Dolanan tradisional yaiku dolanan warisan budaya Jawa sing wis ana wiwit...",
+            sub: "Lengkapi ukara iki!",
+            options: [
+              "Jaman biyen",
+              "Tahun wingi",
+              "Dina Minggu",
+              "Wulan ngarep"
+            ],
+            answer: 0,
+            explain: "Dolanan tradisional yaiku dolanan warisan budaya Jawa sing wis ana wiwit jaman biyen."
+          },
+          {
+            type: "mcq",
+            npcIcon: "🧒",
+            npcName: "Bocah Kampung • Alun-Alun",
+            question: "Dolanan tradisional sing nganggo pring dawa kanggo mlaku diarani...",
+            sub: "Salah siji saka 7 dolanan tradisional ing poster!",
+            options: [
+              "Congklak",
+              "Egrang",
+              "Bekelan",
+              "Gobag Sodor"
+            ],
+            answer: 1,
+            explain: "Egrang yaiku dolanan tradisional nganggo pring dawa sing nglatih keseimbangan."
+          },
+          {
+            type: "mcq",
+            npcIcon: "👩",
+            npcName: "Bu Guru • SD Alif Smart",
+            question: "Dolanan tradisional sing ana wiji-wijian (kecik/kerang) ing papan kayu bolong-bolong yaiku...",
+            sub: "Ayo tebak jeneng dolanane!",
+            options: [
+              "Engklek",
+              "Gobag Sodor",
+              "Congklak",
+              "Egrang"
+            ],
+            answer: 2,
+            explain: "Congklak (dakon) dimainake nganggo papan kayu berlubang lan wiji-wijian."
+          },
+          {
+            type: "mcq",
+            npcIcon: "🐦",
+            npcName: "Si Kutut • Pemandu Pintar",
+            question: "Dolanan endi sing bisa dadi Tembang Dolanan sekaligus Dolanan Tradisional ing poster?",
+            sub: "Ana loro ing daftar poster!",
+            options: [
+              "Egrang lan Engklek",
+              "Jamuran lan Cublak-Cublak Suweng",
+              "Bekelan lan Gobag Sodor",
+              "Congklak lan Egrang"
+            ],
+            answer: 1,
+            explain: "Hebat! Jamuran lan Cublak-Cublak Suweng ana ing daftar Tembang Dolanan lan uga Dolanan Tradisional."
+          },
+          {
+            type: "mcq",
+            npcIcon: "⚽",
+            npcName: "Kanca Dolanan • Gladhen Kawruh No. 4",
+            question: "Dolanan tradisional sing nganggo bal karet cilik lan wiji bekel diarani...",
+            sub: "Nomer 5 ing daftar Dolanan Tradisional!",
+            options: [
+              "Bekelan",
+              "Gobag Sodor",
+              "Egrang",
+              "Jamuran"
+            ],
+            answer: 0,
+            explain: "Bekelan dimainake nganggo bal cilik sing dipantulake sinambi njupuk wiji bekel."
+          },
+          {
+            type: "mcq",
+            npcIcon: "🏃",
+            npcName: "Mas Bagas • Lapangan Desa",
+            question: "Dolanan tradisional kelompok sing jaga garis supaya mungsuh ora bisa liwat diarani...",
+            sub: "Nomer 1 ing daftar Dolanan Tradisional!",
+            options: [
+              "Engklek",
+              "Congklak",
+              "Gobag Sodor",
+              "Bekelan"
+            ],
+            answer: 2,
+            explain: "Gobag Sodor yaiku dolanan kelompok sing nglatih ketangkasan lan kerja sama."
+          },
+          {
+            type: "mcq",
+            npcIcon: "🦘",
+            npcName: "Mbak Sekar • Pelataran",
+            question: "Dolanan tradisional sing mlumpat nganggo sikil siji ing kotak-kotak sing digambar ing lemah yaiku...",
+            sub: "Nomer 4 ing daftar Dolanan Tradisional!",
+            options: [
+              "Engklek",
+              "Egrang",
+              "Congklak",
+              "Jamuran"
+            ],
+            answer: 0,
+            explain: "Engklek dimainake kanthi mlumpat nganggo sikil siji ing kotak-kotak gambar."
+          }
+        ]
+      },
+      {
+        id: 2,
+        tag: "POS 3",
+        title: "Basa Krama Perangan Awak",
+        subtitle: "Ngoko ➔ Krama Anggota Badan",
+        icon: "🙋",
+        color: "from-sky-500 to-blue-700",
+        steps: [
+          {
+            type: "mcq",
+            npcIcon: "👴",
+            npcName: "Simbah Kakung • Gladhen Kawruh No. 2",
+            question: "Apa basa kramane 'Tangan'?",
+            sub: "Pitakon saka Gladhen Kawruh Mini No. 2!",
+            options: ["Suku", "Asta", "Grana", "Mustaka"],
+            answer: 1,
+            explain: "Basa kramane 'Tangan' yaiku 'Asta'."
+          },
+          {
+            type: "mcq",
+            npcIcon: "👵",
+            npcName: "Simbah Putri • Gladhen Kawruh No. 6",
+            question: "Apa basa kramane 'Mripat'?",
+            sub: "Pitakon saka Gladhen Kawruh Mini No. 6!",
+            options: ["Talingan", "Lathi", "Soca / Paningal", "Palarapan"],
+            answer: 2,
+            explain: "Basa kramane 'Mripat' yaiku 'Soca' utawa 'Paningal'."
+          },
+          {
+            type: "match",
+            npcIcon: "🧙‍♂️",
+            npcName: "Empu Kawruh • Tantangan Jodohake Kartu 1",
+            question: "Jodohake tembung Ngoko (kiwa) karo Basa Kramane (tengen)!",
+            sub: "Klik kartu Ngoko dhisik, banjur klik pasangane Basa Krama!",
+            pairs: [
+              { ngoko: "Irung", krama: "Grana" },
+              { ngoko: "Sikil", krama: "Suku / Samparan" },
+              { ngoko: "Untu", krama: "Waja" },
+              { ngoko: "Kuping", krama: "Talingan" }
+            ],
+            explain: "Jos tenan! Irung = Grana, Sikil = Suku/Samparan, Untu = Waja, Kuping = Talingan."
+          },
+          {
+            type: "match",
+            npcIcon: "👸",
+            npcName: "Putri Keraton • Tantangan Jodohake Kartu 2",
+            question: "Cocokake perangan awak liyane iki kanthi bener!",
+            sub: "Aja nganti kliru ya!",
+            pairs: [
+              { ngoko: "Sirah", krama: "Mustaka" },
+              { ngoko: "Rambut", krama: "Rikma" },
+              { ngoko: "Weteng", krama: "Padharan" },
+              { ngoko: "Rai", krama: "Pasuryan" }
+            ],
+            explain: "Pinter banget! Sirah = Mustaka, Rambut = Rikma, Weteng = Padharan, Rai = Pasuryan."
+          },
+          {
+            type: "mcq",
+            npcIcon: "🧓",
+            npcName: "Pakde Lurah • Pendopo",
+            question: "Basa kramane 'Lambe' lan 'Bathuk' yaiku...",
+            sub: "Delengen tabel Perangan Awak no. 6 lan 14!",
+            options: [
+              "Lathi lan Palarapan",
+              "Racikan lan Tapak Asta",
+              "Waja lan Rikma",
+              "Grana lan Pasuryan"
+            ],
+            answer: 0,
+            explain: "Lambe basa kramane Lathi, dene Bathuk basa kramane Palarapan."
+          },
+          {
+            type: "match",
+            npcIcon: "🐦",
+            npcName: "Si Kutut • Tantangan Jodohake Kartu 3",
+            question: "Jodohake perangan awak bagian tangan lan rai iki!",
+            sub: "Delengen nomer 6, 9, 10, lan 14 ing tabel!",
+            pairs: [
+              { ngoko: "Driji", krama: "Racikan" },
+              { ngoko: "Epek-epek", krama: "Tapak Asta" },
+              { ngoko: "Lambe", krama: "Lathi" },
+              { ngoko: "Bathuk", krama: "Palarapan" }
+            ],
+            explain: "Luar biasa! Driji = Racikan, Epek-epek = Tapak Asta, Lambe = Lathi, Bathuk = Palarapan."
+          },
+          {
+            type: "mcq",
+            npcIcon: "👩‍⚕️",
+            npcName: "Bu Dokter Desa • Posyandu",
+            question: "Simbah ngendika: 'Mustakaku rada ngelu.' Tegese tembung 'Mustaka' yaiku...",
+            sub: "Nomer 7 ing tabel Perangan Awak!",
+            options: [
+              "Weteng",
+              "Sirah",
+              "Sikil",
+              "Irung"
+            ],
+            answer: 1,
+            explain: "Mustaka iku basa kramane 'Sirah' (kepala)."
+          },
+          {
+            type: "mcq",
+            npcIcon: "👴",
+            npcName: "Simbah Kakung • Pendopo",
+            question: "Apa basa kramane 'Driji' lan 'Epek-epek' (telapak tangan)?",
+            sub: "Nomer 9 lan 10 ing tabel Perangan Awak!",
+            options: [
+              "Racikan lan Tapak Asta",
+              "Grana lan Waja",
+              "Soca lan Talingan",
+              "Rikma lan Padharan"
+            ],
+            answer: 0,
+            explain: "Driji basa kramane Racikan, dene Epek-epek basa kramane Tapak Asta."
+          }
+        ]
+      },
+      {
+        id: 3,
+        tag: "POS 4",
+        title: "Krama Kegiatan Saben Dina",
+        subtitle: "Unggah-Ungguh Saben Dina",
+        icon: "🍚",
+        color: "from-purple-500 to-indigo-700",
+        steps: [
+          {
+            type: "mcq",
+            npcIcon: "👵",
+            npcName: "Simbah Putri • Gladhen Kawruh No. 3",
+            question: "Apa basa kramane 'Mangan'?",
+            sub: "Pitakon saka Gladhen Kawruh Mini No. 3!",
+            options: ["Ngunjuk", "Dhahar", "Sare", "Siram"],
+            answer: 1,
+            explain: "Basa kramane 'Mangan' yaiku 'Dhahar'."
+          },
+          {
+            type: "mcq",
+            npcIcon: "👴",
+            npcName: "Simbah Kakung • Gladhen Kawruh No. 7",
+            question: "Apa basa kramane 'Tangi'?",
+            sub: "Pitakon saka Gladhen Kawruh Mini No. 7!",
+            options: ["Wungu", "Sare", "Lenggah", "Jumeneng"],
+            answer: 0,
+            explain: "Basa kramane 'Tangi' (bangun tidur) yaiku 'Wungu'."
+          },
+          {
+            type: "match",
+            npcIcon: "👩‍🏫",
+            npcName: "Ustadzah Alif Smart • Gladhen Krama 1",
+            question: "Jodohake kegiatan saben dina iki menyang Basa Krama!",
+            sub: "Klik kartu Ngoko banjur klik Basa Kramane!",
+            pairs: [
+              { ngoko: "Turu", krama: "Sare" },
+              { ngoko: "Ngombe", krama: "Ngunjuk" },
+              { ngoko: "Lungguh", krama: "Lenggah" },
+              { ngoko: "Adus", krama: "Siram" }
+            ],
+            explain: "Sempurna! Turu = Sare, Ngombe = Ngunjuk, Lungguh = Lenggah, Adus = Siram."
+          },
+          {
+            type: "match",
+            npcIcon: "🧔",
+            npcName: "Bapak • Ruang Keluarga",
+            question: "Jodohake tembung kriya (kegiatan) iki kanthi sopan!",
+            sub: "Gunakake basa krama kanggo wong tuwa!",
+            pairs: [
+              { ngoko: "Mlaku", krama: "Mlampah" },
+              { ngoko: "Lunga", krama: "Tindak" },
+              { ngoko: "Mulih", krama: "Kondur" },
+              { ngoko: "Teka", krama: "Rawuh" }
+            ],
+            explain: "Hebat! Mlaku = Mlampah, Lunga = Tindak, Mulih = Kondur, Teka = Rawuh."
+          },
+          {
+            type: "mcq",
+            npcIcon: "👴",
+            npcName: "Simbah • Dialog Sopan",
+            question: "Yen Bapak lagi 'Omong' lan 'Ngadeg' ing ngarep omah, basa kramane yaiku...",
+            sub: "Delengen tabel Kegiatan Saben Dina no. 5 lan 11!",
+            options: [
+              "Ngendikan lan Jumeneng",
+              "Damel lan Budhal",
+              "Sare lan Wungu",
+              "Dhahar lan Ngunjuk"
+            ],
+            answer: 0,
+            explain: "Basa kramane Omong yaiku Ngendikan, dene Ngadeg yaiku Jumeneng."
+          },
+          {
+            type: "match",
+            npcIcon: "🧕",
+            npcName: "Ibu • Pawon & Teras",
+            question: "Jodohake tembung kegiatan 'Gawe', 'Mangkat', 'Ngadeg', lan 'Omong'!",
+            sub: "Nomer 5, 11, 12, lan 13 ing tabel Kegiatan Saben Dina!",
+            pairs: [
+              { ngoko: "Gawe", krama: "Damel" },
+              { ngoko: "Mangkat", krama: "Budhal" },
+              { ngoko: "Ngadeg", krama: "Jumeneng" },
+              { ngoko: "Omong", krama: "Ngendikan" }
+            ],
+            explain: "Mantep! Gawe = Damel, Mangkat = Budhal, Ngadeg = Jumeneng, Omong = Ngendikan."
+          },
+          {
+            type: "mcq",
+            npcIcon: "🚲",
+            npcName: "Paklik • Ngarep Omah",
+            question: "Bapak nembe ___ menyang kantor esuk iki. Tembung krama kanggo 'Mangkat' yaiku...",
+            sub: "Nomer 13 ing tabel Kegiatan Saben Dina!",
+            options: [
+              "Budhal",
+              "Kondur",
+              "Sare",
+              "Siram"
+            ],
+            answer: 0,
+            explain: "Basa kramane 'Mangkat' yaiku 'Budhal'."
+          },
+          {
+            type: "mcq",
+            npcIcon: "🍵",
+            npcName: "Simbah Putri • Ruang Tamu",
+            question: "Simbah lagi ___ wedang jahe anget. Tembung krama kanggo 'Ngombe' yaiku...",
+            sub: "Nomer 3 ing tabel Kegiatan Saben Dina!",
+            options: [
+              "Dhahar",
+              "Ngunjuk",
+              "Lenggah",
+              "Rawuh"
+            ],
+            answer: 1,
+            explain: "Basa kramane 'Ngombe' yaiku 'Ngunjuk'."
+          }
+        ]
+      },
+      {
+        id: 4,
+        tag: "POS 5",
+        title: "Tembang Macapat & Ujian Akhir",
+        subtitle: "Tantangan Pendekar Basa Jawa",
+        icon: "👑",
+        color: "from-amber-500 to-red-600",
+        steps: [
+          {
+            type: "mcq",
+            npcIcon: "👑",
+            npcName: "Ki Dalang • Gladhen Kawruh No. 5",
+            question: "Ana pira jinise Tembang Macapat miturut poster Kawruh Mini Basa Jawa?",
+            sub: "Ayo etung cacahe Tembang Macapat!",
+            options: [
+              "7 jinis",
+              "9 jinis",
+              "11 jinis",
+              "14 jinis"
+            ],
+            answer: 2,
+            explain: "Ana 11 jinis Tembang Macapat: Maskumambang, Mijil, Sinom, Kinanti, Asmarandana, Gambuh, Dhandhanggula, Durma, Pangkur, Megatruh, Pocung."
+          },
+          {
+            type: "mcq",
+            npcIcon: "📜",
+            npcName: "Ki Dalang • Urutan Macapat 1 & 11",
+            question: "Tembang Macapat sing nomer 1 (wiwitan) lan nomer 11 (pungkasan) yaiku...",
+            sub: "Delengen urutan 1 nganti 11 ing kotak Tembang Macapat!",
+            options: [
+              "Maskumambang lan Pocung",
+              "Mijil lan Megatruh",
+              "Sinom lan Pangkur",
+              "Kinanti lan Durma"
+            ],
+            answer: 0,
+            explain: "Urutan kaping 1 yaiku Maskumambang, lan urutan kaping 11 (pungkasan) yaiku Pocung."
+          },
+          {
+            type: "mcq",
+            npcIcon: "🎶",
+            npcName: "Sinden Cilik • Pendopo Agung",
+            question: "Ing ngisor iki sing kalebu Tembang Macapat yaiku...",
+            sub: "Aja ketuker karo Tembang Dolanan!",
+            options: [
+              "Dhandhanggula, Asmarandana, Gambuh",
+              "Menthog, Jamuran, Lir-Ilir",
+              "Cublak-Cublak Suweng, Yen Esuk",
+              "Gobag Sodor, Bekelan, Engklek"
+            ],
+            answer: 0,
+            explain: "Bener! Dhandhanggula, Asmarandana, lan Gambuh kalebu 11 Tembang Macapat."
+          },
+          {
+            type: "mcq",
+            npcIcon: "📖",
+            npcName: "Pujangga Keraton • Urutan Macapat",
+            question: "Sawise Maskumambang (1) lan Mijil (2), tembang macapat nomer 3 lan 4 yaiku...",
+            sub: "Urutake 1, 2, 3, 4!",
+            options: [
+              "Sinom lan Kinanti",
+              "Durma lan Pangkur",
+              "Gambuh lan Megatruh",
+              "Pocung lan Dhandhanggula"
+            ],
+            answer: 0,
+            explain: "Urutan Macapat 1-4 yaiku: 1. Maskumambang, 2. Mijil, 3. Sinom, 4. Kinanti."
+          },
+          {
+            type: "mcq",
+            npcIcon: "🎭",
+            npcName: "Ki Dalang • Urutan Macapat Akhir",
+            question: "Tembang Macapat urutan nomer 8, 9, lan 10 sadurunge Pocung yaiku...",
+            sub: "Priksa urutan ngisor ing daftar Tembang Macapat!",
+            options: [
+              "Durma, Pangkur, Megatruh",
+              "Mijil, Sinom, Kinanti",
+              "Asmarandana, Gambuh, Dhandhanggula",
+              "Maskumambang, Mijil, Sinom"
+            ],
+            answer: 0,
+            explain: "Urutan 8-11 yaiku: 8. Durma, 9. Pangkur, 10. Megatruh, 11. Pocung."
+          },
+          {
+            type: "mcq",
+            npcIcon: "👵",
+            npcName: "Simbah • Ujian Unggah-Ungguh",
+            question: "Nalika matur karo wong sing luwih tuwa, kita kudu nggunakake basa apa?",
+            sub: "Pesan luhur 'Ayo Elinga!'",
+            options: [
+              "Basa Ngoko Kasar",
+              "Basa Krama sing sopan",
+              "Basa Gaul",
+              "Meneng wae ora gelem nyapa"
+            ],
+            answer: 1,
+            explain: "Gunakake basa krama nalika guneman karo wong sing luwih tuwa kanggo ngajeni lan nglestarekake budaya Jawa."
+          },
+          {
+            type: "mcq",
+            npcIcon: "🏆",
+            npcName: "Kepala Sekolah • SD Alif Smart",
+            question: "Apa semboyan ing pojok ngisor kiwa poster Kawruh Mini Basa Jawa?",
+            sub: "Pitakon pungkasan kanggo nggayuh gelar Pendekar Basa Jawa!",
+            options: [
+              "Basa Jawa Jati Diri Kita",
+              "Dolanan Terus Saben Dina",
+              "Mangan Turu Saben Wektu",
+              "Sinau Matematika Saben Esuk"
+            ],
+            answer: 0,
+            explain: "Luar biasa! 'Basa Jawa Jati Diri Kita' — Selamat kowe wis nguwasani kabeh materi Kawruh Mini Basa Jawa!"
+          }
+        ]
+      }
+    ];
+    /* =========================================================================
+       5. STATE PERMAINAN
+       ========================================================================= */
+    const state = {
+      playerName: "",
+      hero: "bagas", // 'bagas' | 'sekar'
+      hearts: 3,
+      score: 0,
+      posStars: [0, 0, 0, 0, 0], // max 3 bintang per pos
+      currentPosId: 0,
+      currentStepIdx: 0,
+      wrongInCurrentPos: 0,
+      isAnswered: false,
+      // Untuk mode match (jodohkan kartu)
+      matchSelectedNgoko: null,
+      matchSolvedCount: 0,
+      matchPairsTotal: 0
+    };
+
+    /* =========================================================================
+       6. INISIALISASI & NAVIGASI LAYAR
+       ========================================================================= */
+    window.onload = function () {
+      document.getElementById('previewBagas').innerHTML = getHeroSVG('bagas', 'happy');
+      document.getElementById('previewSekar').innerHTML = getHeroSVG('sekar', 'happy');
+      document.getElementById('mascotKututStart').innerHTML = getKututSVG();
+      renderSinauTab(0);
+    };
+
+    function selectHero(heroKey) {
+      playSoundClick();
+      state.hero = heroKey;
+      const cardBagas = document.getElementById('cardHeroBagas');
+      const cardSekar = document.getElementById('cardHeroSekar');
+      const badgeBagas = document.getElementById('badgeBagas');
+      const badgeSekar = document.getElementById('badgeSekar');
+
+      if (heroKey === 'bagas') {
+        cardBagas.classList.add('ring-4', 'ring-amber-400', 'border-amber-500');
+        cardBagas.classList.remove('opacity-90');
+        badgeBagas.classList.remove('hidden');
+
+        cardSekar.classList.remove('ring-4', 'ring-pink-400', 'border-pink-500');
+        cardSekar.classList.add('opacity-90', 'border-pink-300');
+        badgeSekar.classList.add('hidden');
+      } else {
+        cardSekar.classList.add('ring-4', 'ring-pink-400', 'border-pink-500');
+        cardSekar.classList.remove('opacity-90', 'border-pink-300');
+        badgeSekar.classList.remove('hidden');
+
+        cardBagas.classList.remove('ring-4', 'ring-amber-400', 'border-amber-500');
+        cardBagas.classList.add('opacity-90');
+        badgeBagas.classList.add('hidden');
+      }
+    }
+
+    function showScreen(screenId) {
+      ['screenStart', 'screenMap', 'screenPlay', 'screenCert'].forEach(id => {
+        document.getElementById(id).classList.add('hidden');
+      });
+      document.getElementById(screenId).classList.remove('hidden');
+
+      const inGame = screenId !== 'screenStart';
+      document.getElementById('hudStats').classList.toggle('hidden', !inGame);
+      document.getElementById('hudStartControls').classList.toggle('hidden', inGame);
+    }
+
+    function updateHUD() {
+      const defaultHeroTitle = state.hero === 'bagas' ? 'Mas Bagas' : 'Mbak Sekar';
+      const displayName = state.playerName.trim() ? state.playerName.trim() : defaultHeroTitle;
+      document.getElementById('hudPlayerName').textContent = displayName;
+      document.getElementById('hudAvatarMini').innerHTML = getHeroSVG(state.hero, 'normal');
+      document.getElementById('hudScore').textContent = state.score;
+
+      let heartsStr = '';
+      for (let i = 0; i < 3; i++) {
+        heartsStr += i < state.hearts ? '❤️' : '🖤';
+      }
+      document.getElementById('hudHearts').textContent = heartsStr;
+    }
+
+    function startAdventure() {
+      playSoundCorrect();
+      const rawName = document.getElementById('inputPlayerName').value.trim();
+      state.playerName = rawName;
+      updateHUD();
+      renderMap();
+      showScreen('screenMap');
+    }
+
+    function goHome() {
+      playSoundClick();
+      showScreen('screenStart');
+    }
+
+    function backToMap() {
+      playSoundClick();
+      renderMap();
+      showScreen('screenMap');
+    }
+
+    /* =========================================================================
+       7. RENDER PETA 5 POS PETUALANGAN
+       ========================================================================= */
+    function renderMap() {
+      const defaultHeroTitle = state.hero === 'bagas' ? 'Mas Bagas' : 'Mbak Sekar';
+      const displayName = state.playerName ? `${state.playerName} (${defaultHeroTitle})` : defaultHeroTitle;
+
+      document.getElementById('mapHeroAvatar').innerHTML = getHeroSVG(state.hero, 'happy');
+      document.getElementById('mapGreeting').textContent = `Sugeng Rawuh, ${displayName}!`;
+
+      const grid = document.getElementById('posGrid');
+      grid.innerHTML = '';
+
+      let completedCount = 0;
+
+      POS_DATA.forEach((pos, idx) => {
+        const stars = state.posStars[idx];
+        if (stars > 0) completedCount++;
+
+        const starIcons = [1, 2, 3].map(s => (s <= stars ? '⭐' : '☆')).join(' ');
+        const isDone = stars > 0;
+
+        const card = document.createElement('div');
+        card.className = `rounded-3xl p-4 border-4 ${isDone ? 'border-emerald-500 bg-emerald-50/90' : 'border-amber-400 bg-white/95'} shadow-lg flex flex-col justify-between transition-transform hover:-translate-y-1`;
+        card.innerHTML = `
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="px-3 py-1 rounded-full bg-gradient-to-r ${pos.color} text-white text-xs font-extrabold shadow-sm">
+                ${pos.tag}
+              </span>
+              <span class="text-base tracking-widest">${starIcons}</span>
+            </div>
+            <div class="flex items-center gap-3 my-2">
+              <div class="w-12 h-12 rounded-2xl bg-amber-100 border-2 border-amber-300 flex items-center justify-center text-2xl shrink-0">
+                ${pos.icon}
+              </div>
+              <div>
+                <h3 class="font-title text-lg text-amber-950 leading-tight">${pos.title}</h3>
+                <p class="text-xs text-amber-700 font-semibold">${pos.subtitle}</p>
+              </div>
+            </div>
+          </div>
+          <button onclick="enterPos(${idx})"
+            class="mt-3 w-full btn-jawa py-2.5 rounded-xl bg-gradient-to-r ${pos.color} text-white font-title text-base border-2 border-white/60">
+            ${isDone ? '🔄 Baleni Pos' : '⚔️ Mlebu Pos'}
+          </button>
+        `;
+        grid.appendChild(card);
+      });
+
+      // Tampilkan tombol piagam jika minimal 1 pos selesai atau semua 5 pos selesai
+      const btnCert = document.getElementById('btnShowCert');
+      if (completedCount === POS_DATA.length) {
+        btnCert.classList.remove('hidden');
+        btnCert.classList.add('animate-glow');
+      } else if (completedCount > 0) {
+        btnCert.classList.remove('hidden');
+        btnCert.classList.remove('animate-glow');
+      } else {
+        btnCert.classList.add('hidden');
+      }
+    }
+
+    /* =========================================================================
+       8. LOGIKA BERMAIN DI DALAM POS
+       ========================================================================= */
+    function enterPos(posId) {
+      playSoundClick();
+      state.currentPosId = posId;
+      state.currentStepIdx = 0;
+      state.wrongInCurrentPos = 0;
+      state.hearts = 3;
+      updateHUD();
+      showScreen('screenPlay');
+      renderStep();
+    }
+
+    function retryCurrentPos() {
+      document.getElementById('modalGameOver').classList.add('hidden');
+      enterPos(state.currentPosId);
+    }
+
+    function closeGameOverAndStudy() {
+      document.getElementById('modalGameOver').classList.add('hidden');
+      openSinauModal(state.currentPosId);
+    }
+
+    function setHeroMood(mood, text) {
+      const stage = document.getElementById('playHeroStage');
+      stage.innerHTML = getHeroSVG(state.hero, mood);
+      stage.classList.remove('animate-happy', 'animate-shake');
+      void stage.offsetWidth; // trigger reflow
+      if (mood === 'happy') stage.classList.add('animate-happy');
+      if (mood === 'sad') stage.classList.add('animate-shake');
+
+      const moodEl = document.getElementById('playHeroMood');
+      moodEl.textContent = text;
+      if (mood === 'happy') {
+        moodEl.className = 'text-xs font-extrabold text-emerald-800 bg-emerald-100 px-2.5 py-0.5 rounded-full border border-emerald-400 mt-1';
+      } else if (mood === 'sad') {
+        moodEl.className = 'text-xs font-extrabold text-rose-800 bg-rose-100 px-2.5 py-0.5 rounded-full border border-rose-400 mt-1';
+      } else {
+        moodEl.className = 'text-xs font-bold text-amber-800 bg-white px-2.5 py-0.5 rounded-full border border-amber-300 mt-1';
+      }
+    }
+
+    function renderStep() {
+      const pos = POS_DATA[state.currentPosId];
+      const step = pos.steps[state.currentStepIdx];
+      state.isAnswered = false;
+
+      document.getElementById('playPosTag').textContent = pos.tag;
+      document.getElementById('playPosTitle').textContent = pos.title;
+      document.getElementById('playProgressText').textContent = `${state.currentStepIdx + 1} / ${pos.steps.length}`;
+      const pct = ((state.currentStepIdx + 1) / pos.steps.length) * 100;
+      document.getElementById('playProgressBar').style.width = `${pct}%`;
+
+      const heroTitle = state.hero === 'bagas' ? 'Mas Bagas' : 'Mbak Sekar';
+      document.getElementById('playHeroLabel').textContent = state.playerName || heroTitle;
+      setHeroMood('normal', 'Ayo Jawab!');
+
+      document.getElementById('npcIcon').textContent = step.npcIcon;
+      document.getElementById('npcName').textContent = step.npcName;
+      document.getElementById('questionText').textContent = step.question;
+      document.getElementById('questionSub').textContent = step.sub || '';
+
+      document.getElementById('feedbackBox').classList.add('hidden');
+
+      const answerArea = document.getElementById('answerArea');
+      answerArea.innerHTML = '';
+
+      if (step.type === 'mcq') {
+        renderMCQ(step, answerArea);
+      } else if (step.type === 'match') {
+        renderMatchGame(step, answerArea);
+      }
+    }
+
+    function renderMCQ(step, container) {
+      const grid = document.createElement('div');
+      grid.className = 'grid grid-cols-1 md:grid-cols-2 gap-3';
+
+      const letters = ['A', 'B', 'C', 'D'];
+      step.options.forEach((opt, idx) => {
+        const btn = document.createElement('button');
+        btn.id = `optBtn_${idx}`;
+        btn.onclick = () => checkMCQ(idx);
+        btn.className = 'btn-jawa text-left p-4 rounded-2xl bg-white hover:bg-amber-50 border-3 border-amber-400 flex items-center gap-3 font-bold text-amber-950 text-sm md:text-base';
+        btn.innerHTML = `
+          <span class="w-9 h-9 rounded-xl bg-amber-500 text-white font-title flex items-center justify-center shrink-0 shadow">
+            ${letters[idx]}
+          </span>
+          <span class="flex-1">${opt}</span>
+        `;
+        grid.appendChild(btn);
+      });
+
+      container.appendChild(grid);
+    }
+
+    function checkMCQ(selectedIdx) {
+      if (state.isAnswered) return;
+      state.isAnswered = true;
+
+      const pos = POS_DATA[state.currentPosId];
+      const step = pos.steps[state.currentStepIdx];
+      const isCorrect = selectedIdx === step.answer;
+
+      // Warnai tombol
+      step.options.forEach((_, idx) => {
+        const btn = document.getElementById(`optBtn_${idx}`);
+        btn.disabled = true;
+        if (idx === step.answer) {
+          btn.className = 'p-4 rounded-2xl bg-emerald-500 text-white border-3 border-emerald-200 flex items-center gap-3 font-extrabold text-sm md:text-base shadow-lg';
+        } else if (idx === selectedIdx && !isCorrect) {
+          btn.className = 'p-4 rounded-2xl bg-rose-500 text-white border-3 border-rose-200 flex items-center gap-3 font-extrabold text-sm md:text-base opacity-90';
+        } else {
+          btn.classList.add('opacity-50');
+        }
+      });
+
+      handleStepOutcome(isCorrect, step.explain);
+    }
+
+    /* ---------------- MINI-GAME COCOKKAN PASANGAN (NGOKO - KRAMA) ---------------- */
+    function renderMatchGame(step, container) {
+      state.matchSelectedNgoko = null;
+      state.matchSolvedCount = 0;
+      state.matchPairsTotal = step.pairs.length;
+
+      // Acak urutan kanan (Krama)
+      const leftItems = step.pairs.map((p, i) => ({ text: p.ngoko, pairId: i }));
+      const rightItems = step.pairs
+        .map((p, i) => ({ text: p.krama, pairId: i }))
+        .sort(() => Math.random() - 0.5);
+
+      const wrapper = document.createElement('div');
+      wrapper.className = 'grid grid-cols-2 gap-3 md:gap-6 max-w-3xl mx-auto';
+
+      const colLeft = document.createElement('div');
+      colLeft.className = 'space-y-2.5';
+      colLeft.innerHTML = `<div class="text-center font-title text-sm text-amber-800 bg-amber-200 py-1 rounded-xl">Basa Ngoko</div>`;
+
+      const colRight = document.createElement('div');
+      colRight.className = 'space-y-2.5';
+      colRight.innerHTML = `<div class="text-center font-title text-sm text-emerald-900 bg-emerald-200 py-1 rounded-xl">Basa Krama</div>`;
+
+      leftItems.forEach(item => {
+        const btn = document.createElement('button');
+        btn.id = `matchL_${item.pairId}`;
+        btn.textContent = item.text;
+        btn.className = 'btn-jawa w-full py-3 px-3 rounded-2xl bg-white border-3 border-amber-400 font-extrabold text-amber-950 text-sm md:text-base';
+        btn.onclick = () => selectMatchLeft(item.pairId);
+        colLeft.appendChild(btn);
+      });
+
+      rightItems.forEach(item => {
+        const btn = document.createElement('button');
+        btn.id = `matchR_${item.pairId}`;
+        btn.textContent = item.text;
+        btn.className = 'btn-jawa w-full py-3 px-3 rounded-2xl bg-white border-3 border-emerald-400 font-extrabold text-emerald-950 text-sm md:text-base';
+        btn.onclick = () => selectMatchRight(item.pairId);
+        colRight.appendChild(btn);
+      });
+
+      wrapper.appendChild(colLeft);
+      wrapper.appendChild(colRight);
+      container.appendChild(wrapper);
+    }
+
+    function selectMatchLeft(pairId) {
+      if (state.isAnswered) return;
+      const btn = document.getElementById(`matchL_${pairId}`);
+      if (btn.disabled) return;
+
+      playSoundClick();
+      state.matchSelectedNgoko = pairId;
+
+      // Reset highlight kiri yang belum selesai
+      for (let i = 0; i < state.matchPairsTotal; i++) {
+        const b = document.getElementById(`matchL_${i}`);
+        if (!b.disabled) {
+          b.className = 'btn-jawa w-full py-3 px-3 rounded-2xl bg-white border-3 border-amber-400 font-extrabold text-amber-950 text-sm md:text-base';
+        }
+      }
+      btn.className = 'btn-jawa w-full py-3 px-3 rounded-2xl bg-amber-400 border-3 border-amber-700 font-extrabold text-amber-950 text-sm md:text-base ring-4 ring-amber-300';
+    }
+
+    function selectMatchRight(rightPairId) {
+      if (state.isAnswered) return;
+      const btnR = document.getElementById(`matchR_${rightPairId}`);
+      if (btnR.disabled) return;
+
+      if (state.matchSelectedNgoko === null) {
+        playSoundWrong();
+        setHeroMood('sad', 'Klik Ngoko sik!');
+        return;
+      }
+
+      const leftPairId = state.matchSelectedNgoko;
+      const btnL = document.getElementById(`matchL_${leftPairId}`);
+
+      if (leftPairId === rightPairId) {
+        // Cocok!
+        playTone(659.25, 0.2, 'triangle', 0);
+        playTone(880.0, 0.25, 'triangle', 0.08);
+
+        btnL.disabled = true;
+        btnR.disabled = true;
+        btnL.className = 'w-full py-3 px-3 rounded-2xl bg-emerald-500 text-white border-3 border-emerald-200 font-extrabold text-sm md:text-base opacity-85';
+        btnR.className = 'w-full py-3 px-3 rounded-2xl bg-emerald-500 text-white border-3 border-emerald-200 font-extrabold text-sm md:text-base opacity-85';
+
+        state.matchSelectedNgoko = null;
+        state.matchSolvedCount++;
+        setHeroMood('happy', 'Cocok! Teruske!');
+
+        if (state.matchSolvedCount === state.matchPairsTotal) {
+          state.isAnswered = true;
+          const step = POS_DATA[state.currentPosId].steps[state.currentStepIdx];
+          handleStepOutcome(true, step.explain);
+        }
+      } else {
+        // Salah pasangan
+        playSoundWrong();
+        state.wrongInCurrentPos++;
+        state.hearts = Math.max(0, state.hearts - 1);
+        updateHUD();
+        setHeroMood('sad', 'Durung cocok, coba maneh!');
+
+        btnR.classList.add('bg-rose-200', 'border-rose-500');
+        setTimeout(() => {
+          btnR.classList.remove('bg-rose-200', 'border-rose-500');
+        }, 450);
+
+        if (state.hearts === 0) {
+          setTimeout(() => {
+            document.getElementById('modalGameOver').classList.remove('hidden');
+          }, 500);
+        }
+      }
+    }
+
+    /* ---------------- PENANGANAN HASIL JAWABAN ---------------- */
+    function handleStepOutcome(isCorrect, explainText) {
+      const fbBox = document.getElementById('feedbackBox');
+      const fbEmoji = document.getElementById('feedbackEmoji');
+      const fbTitle = document.getElementById('feedbackTitle');
+      const fbExplain = document.getElementById('feedbackExplain');
+
+      fbBox.classList.remove('hidden', 'bg-emerald-100', 'border-emerald-500', 'text-emerald-950', 'bg-rose-100', 'border-rose-500', 'text-rose-950');
+
+      if (isCorrect) {
+        playSoundCorrect();
+        state.score += 20;
+        updateHUD();
+        setHeroMood('happy', 'Bener! Jos Gandos!');
+
+        fbBox.classList.add('bg-emerald-100', 'border-emerald-500', 'text-emerald-950');
+        fbEmoji.textContent = '🎉';
+        fbTitle.textContent = 'Pinter Banget! (+20 Poin)';
+        fbExplain.textContent = explainText;
+      } else {
+        playSoundWrong();
+        state.wrongInCurrentPos++;
+        state.hearts = Math.max(0, state.hearts - 1);
+        updateHUD();
+        setHeroMood('sad', 'Aja sedih, sinau maneh!');
+
+        fbBox.classList.add('bg-rose-100', 'border-rose-500', 'text-rose-950');
+        fbEmoji.textContent = '💡';
+        fbTitle.textContent = 'Kurang Pas, Ayo Elinga!';
+        fbExplain.textContent = explainText;
+
+        if (state.hearts === 0) {
+          setTimeout(() => {
+            document.getElementById('modalGameOver').classList.remove('hidden');
+          }, 900);
+          return;
+        }
+      }
+    }
+
+    function nextStep() {
+      playSoundClick();
+      const pos = POS_DATA[state.currentPosId];
+      if (state.currentStepIdx + 1 < pos.steps.length) {
+        state.currentStepIdx++;
+        renderStep();
+      } else {
+        // Selesai 1 Pos!
+        playSoundWinLevel();
+        const earnedStars = state.wrongInCurrentPos === 0 ? 3 : state.wrongInCurrentPos === 1 ? 2 : 1;
+        state.posStars[state.currentPosId] = Math.max(state.posStars[state.currentPosId], earnedStars);
+
+        // Cek apakah semua 5 pos sudah selesai
+        const allCleared = state.posStars.every(s => s > 0);
+        if (allCleared) {
+          showCertificate();
+        } else {
+          backToMap();
+        }
+      }
+    }
+
+    /* =========================================================================
+       9. SERTIFIKAT & MODAL SINAU SIK
+       ========================================================================= */
+    function showCertificate() {
+      playSoundWinLevel();
+      const defaultHeroTitle = state.hero === 'bagas' ? 'Mas Bagas' : 'Mbak Sekar';
+      const displayName = state.playerName ? `${state.playerName} (${defaultHeroTitle})` : defaultHeroTitle;
+
+      document.getElementById('certPlayerName').textContent = displayName;
+      document.getElementById('certHeroAvatar').innerHTML = getHeroSVG(state.hero, 'happy');
+      document.getElementById('certScore').textContent = state.score;
+
+      const totalStars = state.posStars.reduce((a, b) => a + b, 0);
+      document.getElementById('certStars').textContent = `${totalStars} / 15 ⭐`;
+
+      showScreen('screenCert');
+    }
+
+    function resetAllGame() {
+      playSoundClick();
+      state.hearts = 3;
+      state.score = 0;
+      state.posStars = [0, 0, 0, 0, 0];
+      updateHUD();
+      showScreen('screenStart');
+    }
+
+    function openSinauModal(tabIdx = 0) {
+      playSoundClick();
+      document.getElementById('modalSinau').classList.remove('hidden');
+      renderSinauTab(tabIdx);
+    }
+
+    function closeSinauModal() {
+      playSoundClick();
+      document.getElementById('modalSinau').classList.add('hidden');
+    }
+
+    function renderSinauTab(tabIdx) {
+      // Highlight tab aktif
+      for (let i = 0; i < 5; i++) {
+        const btn = document.getElementById(`sinauTab${i}`);
+        if (i === tabIdx) {
+          btn.className = 'sinau-tab px-3 py-1.5 rounded-xl font-bold text-xs md:text-sm bg-amber-800 text-white shadow';
+        } else {
+          btn.className = 'sinau-tab px-3 py-1.5 rounded-xl font-bold text-xs md:text-sm bg-white text-amber-900 hover:bg-amber-100';
+        }
+      }
+
+      const content = document.getElementById('sinauContent');
+
+      if (tabIdx === 0) {
+        const d = MATERI_POSTER.tembangDolanan;
+        content.innerHTML = `
+          <div class="bg-pink-100 border-2 border-pink-400 rounded-2xl p-4">
+            <h4 class="font-title text-xl text-pink-900">${d.title}</h4>
+            <p class="text-sm font-semibold text-pink-950 mt-1">${d.desc}</p>
+            <p class="text-xs text-pink-800 mt-1">Klik tombol <b>📺 Tonton YouTube</b> ing saben kertu kanggo ngrungokake lan nyanyi bareng!</p>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+            ${d.items.map((item, idx) => `
+              <div class="card-item bg-white border-2 border-pink-300 rounded-2xl p-3.5 flex flex-col justify-between gap-2.5 shadow-sm">
+                <div class="flex items-center gap-3">
+                  <span class="w-8 h-8 rounded-full bg-pink-500 text-white font-title flex items-center justify-center shrink-0">${idx + 1}</span>
+                  <div>
+                    <div class="font-extrabold text-amber-950 text-sm md:text-base">🎵 ${item.name}</div>
+                    <div class="text-[11px] text-amber-700 font-semibold">${item.channel}</div>
+                  </div>
+                </div>
+                <a href="${item.yt}" target="_blank" rel="noopener noreferrer"
+                  class="btn-jawa w-full py-1.5 px-3 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold text-xs text-center flex items-center justify-center gap-1.5">
+                  📺 Tonton YouTube
+                </a>
+              </div>
+            `).join('')}
+          </div>
+        `;
+      } else if (tabIdx === 1) {
+        const d = MATERI_POSTER.dolananTradisional;
+        content.innerHTML = `
+          <div class="bg-emerald-100 border-2 border-emerald-400 rounded-2xl p-4">
+            <h4 class="font-title text-xl text-emerald-900">${d.title}</h4>
+            <p class="text-sm font-semibold text-emerald-950 mt-1">${d.desc}</p>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
+            ${d.items.map((item, idx) => `
+              <div class="card-item bg-white border-2 border-emerald-300 rounded-2xl p-3.5 flex items-center gap-3 shadow-sm">
+                <span class="w-8 h-8 rounded-full bg-emerald-600 text-white font-title flex items-center justify-center shrink-0">${idx + 1}</span>
+                <span class="font-extrabold text-amber-950 text-sm md:text-base">🪁 ${item}</span>
+              </div>
+            `).join('')}
+          </div>
+        `;
+      } else if (tabIdx === 2) {
+        content.innerHTML = `
+          <div class="bg-sky-100 border-2 border-sky-400 rounded-2xl p-4">
+            <h4 class="font-title text-xl text-sky-900">3. Basa Krama Perangan Awak (Anggota Badan)</h4>
+            <p class="text-sm font-semibold text-sky-950 mt-1">Ngapikna guneman nganggo basa krama!</p>
+          </div>
+          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2.5">
+            ${MATERI_POSTER.peranganAwak.map((row, idx) => `
+              <div class="card-item bg-white border-2 border-sky-300 rounded-2xl p-3 text-center shadow-sm">
+                <div class="text-xs font-bold text-slate-500">${idx + 1}. Ngoko: <span class="text-amber-900">${row.ngoko}</span></div>
+                <div class="font-title text-base text-sky-800 mt-1">➔ ${row.krama}</div>
+              </div>
+            `).join('')}
+          </div>
+        `;
+      } else if (tabIdx === 3) {
+        content.innerHTML = `
+          <div class="bg-purple-100 border-2 border-purple-400 rounded-2xl p-4">
+            <h4 class="font-title text-xl text-purple-900">4. Basa Krama Kegiatan Saben Dina</h4>
+            <p class="text-sm font-semibold text-purple-950 mt-1">Ayo nggunakake basa krama ing saben kegiatan!</p>
+          </div>
+          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2.5">
+            ${MATERI_POSTER.kegiatanSabenDina.map((row, idx) => `
+              <div class="card-item bg-white border-2 border-purple-300 rounded-2xl p-3 text-center shadow-sm">
+                <div class="text-xs font-bold text-slate-500">${idx + 1}. Ngoko: <span class="text-amber-900">${row.ngoko}</span></div>
+                <div class="font-title text-base text-purple-800 mt-1">➔ ${row.krama}</div>
+              </div>
+            `).join('')}
+          </div>
+        `;
+      } else if (tabIdx === 4) {
+        content.innerHTML = `
+          <div class="bg-amber-100 border-2 border-amber-500 rounded-2xl p-4">
+            <h4 class="font-title text-xl text-amber-950">5. Tembang Macapat (Ana 11 Jinis)</h4>
+            <p class="text-sm font-semibold text-amber-900 mt-1">Apalna urutan 11 jinis tembang macapat ing ngisor iki:</p>
+          </div>
+          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+            ${MATERI_POSTER.tembangMacapat.map(item => `
+              <div class="card-item bg-white border-2 border-amber-400 rounded-2xl p-3.5 text-center font-extrabold text-amber-950 text-sm md:text-base shadow-sm">
+                📜 ${item}
+              </div>
+            `).join('')}
+          </div>
+        `;
+      }
+    }
+  </script>
+</body>
+</html>
